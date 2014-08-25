@@ -34,7 +34,7 @@
                         <viewControllerLayoutGuide type="top" id="yYm-p7-D9U"/>
                         <viewControllerLayoutGuide type="bottom" id="SKq-cp-oMn"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1Se-Ph-8he">
+                    <view key="view" contentMode="scaleToFill" id="1Se-Ph-8he" customClass="PWS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -57,10 +57,10 @@
             </objects>
             <point key="canvasLocation" x="1406" y="148"/>
         </scene>
-        <!--View Controller-->
+        <!--Signup View Controller-->
         <scene sceneID="BC4-UL-pTM">
             <objects>
-                <viewController id="3Nm-WF-9xa" sceneMemberID="viewController">
+                <viewController id="3Nm-WF-9xa" customClass="PWSignupViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mVd-XZ-O4D"/>
                         <viewControllerLayoutGuide type="bottom" id="Y4R-6U-Mw5"/>
@@ -93,11 +93,19 @@
                                 <state key="normal" title="Signup">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="signup:" destination="3Nm-WF-9xa" eventType="touchUpInside" id="knc-FS-sNA"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="sj0-Uo-egc"/>
+                    <connections>
+                        <outlet property="emailField" destination="Pkf-Qq-PQn" id="vX7-xc-eHQ"/>
+                        <outlet property="passwordConfirmationField" destination="O5O-9r-suh" id="t3m-JR-UBr"/>
+                        <outlet property="passwordField" destination="pA4-ZU-kOE" id="FPP-cp-e5L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gty-FP-9fJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
