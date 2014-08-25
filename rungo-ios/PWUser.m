@@ -7,11 +7,21 @@
 //
 
 #import "PWUser.h"
+#import <AFNetworking/AFHTTPRequestOperationManager.h>
 
 @implementation PWUser
 
-+ (id) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation {
-    NSURLSession *session = [NSURLSession sharedSession];
++ (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation {
+    
+    AFHTTPRequestOperationManager *manager =[AFHTTPRequestOperationManager manager];
+    
+    NSDictionary *params = @{@"email":email, @"password":password, @"password_confirmation":passwordConfirmation};
+    
+    [manager POST:@"http://rungoapi.herokuapp.com/api/users/" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Success %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"failure, %@", error);
+    }];
 
 }
 

@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface PWUser : NSObject
 
-+(id) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation;
++(void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation;
 
 @end
