@@ -1,0 +1,453 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		166A02C919AAF69200D29108 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A02C819AAF69200D29108 /* Foundation.framework */; };
+		166A02CB19AAF69200D29108 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A02CA19AAF69200D29108 /* CoreGraphics.framework */; };
+		166A02CD19AAF69200D29108 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A02CC19AAF69200D29108 /* UIKit.framework */; };
+		166A02D319AAF69200D29108 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 166A02D119AAF69200D29108 /* InfoPlist.strings */; };
+		166A02D519AAF69200D29108 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 166A02D419AAF69200D29108 /* main.m */; };
+		166A02D919AAF69200D29108 /* PWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 166A02D819AAF69200D29108 /* PWAppDelegate.m */; };
+		166A02DB19AAF69200D29108 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 166A02DA19AAF69200D29108 /* Images.xcassets */; };
+		166A02E219AAF69200D29108 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A02E119AAF69200D29108 /* XCTest.framework */; };
+		166A02E319AAF69200D29108 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A02C819AAF69200D29108 /* Foundation.framework */; };
+		166A02E419AAF69200D29108 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A02CC19AAF69200D29108 /* UIKit.framework */; };
+		166A02EC19AAF69200D29108 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 166A02EA19AAF69200D29108 /* InfoPlist.strings */; };
+		166A02EE19AAF69200D29108 /* rungo_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 166A02ED19AAF69200D29108 /* rungo_iosTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		166A02E519AAF69200D29108 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 166A02BD19AAF69200D29108 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 166A02C419AAF69200D29108;
+			remoteInfo = "rungo-ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		166A02C519AAF69200D29108 /* rungo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rungo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		166A02C819AAF69200D29108 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		166A02CA19AAF69200D29108 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		166A02CC19AAF69200D29108 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		166A02D019AAF69200D29108 /* rungo-ios-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "rungo-ios-Info.plist"; sourceTree = "<group>"; };
+		166A02D219AAF69200D29108 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		166A02D419AAF69200D29108 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		166A02D619AAF69200D29108 /* rungo-ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "rungo-ios-Prefix.pch"; sourceTree = "<group>"; };
+		166A02D719AAF69200D29108 /* PWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PWAppDelegate.h; sourceTree = "<group>"; };
+		166A02D819AAF69200D29108 /* PWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PWAppDelegate.m; sourceTree = "<group>"; };
+		166A02DA19AAF69200D29108 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		166A02E019AAF69200D29108 /* rungo-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "rungo-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		166A02E119AAF69200D29108 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		166A02E919AAF69200D29108 /* rungo-iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "rungo-iosTests-Info.plist"; sourceTree = "<group>"; };
+		166A02EB19AAF69200D29108 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		166A02ED19AAF69200D29108 /* rungo_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rungo_iosTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		166A02C219AAF69200D29108 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				166A02CB19AAF69200D29108 /* CoreGraphics.framework in Frameworks */,
+				166A02CD19AAF69200D29108 /* UIKit.framework in Frameworks */,
+				166A02C919AAF69200D29108 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		166A02DD19AAF69200D29108 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				166A02E219AAF69200D29108 /* XCTest.framework in Frameworks */,
+				166A02E419AAF69200D29108 /* UIKit.framework in Frameworks */,
+				166A02E319AAF69200D29108 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		166A02BC19AAF69200D29108 = {
+			isa = PBXGroup;
+			children = (
+				166A02CE19AAF69200D29108 /* rungo-ios */,
+				166A02E719AAF69200D29108 /* rungo-iosTests */,
+				166A02C719AAF69200D29108 /* Frameworks */,
+				166A02C619AAF69200D29108 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		166A02C619AAF69200D29108 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				166A02C519AAF69200D29108 /* rungo-ios.app */,
+				166A02E019AAF69200D29108 /* rungo-iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		166A02C719AAF69200D29108 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				166A02C819AAF69200D29108 /* Foundation.framework */,
+				166A02CA19AAF69200D29108 /* CoreGraphics.framework */,
+				166A02CC19AAF69200D29108 /* UIKit.framework */,
+				166A02E119AAF69200D29108 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		166A02CE19AAF69200D29108 /* rungo-ios */ = {
+			isa = PBXGroup;
+			children = (
+				166A02D719AAF69200D29108 /* PWAppDelegate.h */,
+				166A02D819AAF69200D29108 /* PWAppDelegate.m */,
+				166A02DA19AAF69200D29108 /* Images.xcassets */,
+				166A02CF19AAF69200D29108 /* Supporting Files */,
+			);
+			path = "rungo-ios";
+			sourceTree = "<group>";
+		};
+		166A02CF19AAF69200D29108 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				166A02D019AAF69200D29108 /* rungo-ios-Info.plist */,
+				166A02D119AAF69200D29108 /* InfoPlist.strings */,
+				166A02D419AAF69200D29108 /* main.m */,
+				166A02D619AAF69200D29108 /* rungo-ios-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		166A02E719AAF69200D29108 /* rungo-iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				166A02ED19AAF69200D29108 /* rungo_iosTests.m */,
+				166A02E819AAF69200D29108 /* Supporting Files */,
+			);
+			path = "rungo-iosTests";
+			sourceTree = "<group>";
+		};
+		166A02E819AAF69200D29108 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				166A02E919AAF69200D29108 /* rungo-iosTests-Info.plist */,
+				166A02EA19AAF69200D29108 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		166A02C419AAF69200D29108 /* rungo-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 166A02F119AAF69200D29108 /* Build configuration list for PBXNativeTarget "rungo-ios" */;
+			buildPhases = (
+				166A02C119AAF69200D29108 /* Sources */,
+				166A02C219AAF69200D29108 /* Frameworks */,
+				166A02C319AAF69200D29108 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "rungo-ios";
+			productName = "rungo-ios";
+			productReference = 166A02C519AAF69200D29108 /* rungo-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+		166A02DF19AAF69200D29108 /* rungo-iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 166A02F419AAF69200D29108 /* Build configuration list for PBXNativeTarget "rungo-iosTests" */;
+			buildPhases = (
+				166A02DC19AAF69200D29108 /* Sources */,
+				166A02DD19AAF69200D29108 /* Frameworks */,
+				166A02DE19AAF69200D29108 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				166A02E619AAF69200D29108 /* PBXTargetDependency */,
+			);
+			name = "rungo-iosTests";
+			productName = "rungo-iosTests";
+			productReference = 166A02E019AAF69200D29108 /* rungo-iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		166A02BD19AAF69200D29108 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PW;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = PhilWittig;
+				TargetAttributes = {
+					166A02DF19AAF69200D29108 = {
+						TestTargetID = 166A02C419AAF69200D29108;
+					};
+				};
+			};
+			buildConfigurationList = 166A02C019AAF69200D29108 /* Build configuration list for PBXProject "rungo-ios" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 166A02BC19AAF69200D29108;
+			productRefGroup = 166A02C619AAF69200D29108 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				166A02C419AAF69200D29108 /* rungo-ios */,
+				166A02DF19AAF69200D29108 /* rungo-iosTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		166A02C319AAF69200D29108 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				166A02D319AAF69200D29108 /* InfoPlist.strings in Resources */,
+				166A02DB19AAF69200D29108 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		166A02DE19AAF69200D29108 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				166A02EC19AAF69200D29108 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		166A02C119AAF69200D29108 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				166A02D519AAF69200D29108 /* main.m in Sources */,
+				166A02D919AAF69200D29108 /* PWAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		166A02DC19AAF69200D29108 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				166A02EE19AAF69200D29108 /* rungo_iosTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		166A02E619AAF69200D29108 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 166A02C419AAF69200D29108 /* rungo-ios */;
+			targetProxy = 166A02E519AAF69200D29108 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		166A02D119AAF69200D29108 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				166A02D219AAF69200D29108 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		166A02EA19AAF69200D29108 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				166A02EB19AAF69200D29108 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		166A02EF19AAF69200D29108 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		166A02F019AAF69200D29108 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		166A02F219AAF69200D29108 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "rungo-ios/rungo-ios-Prefix.pch";
+				INFOPLIST_FILE = "rungo-ios/rungo-ios-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		166A02F319AAF69200D29108 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "rungo-ios/rungo-ios-Prefix.pch";
+				INFOPLIST_FILE = "rungo-ios/rungo-ios-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		166A02F519AAF69200D29108 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/rungo-ios.app/rungo-ios";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "rungo-ios/rungo-ios-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "rungo-iosTests/rungo-iosTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		166A02F619AAF69200D29108 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/rungo-ios.app/rungo-ios";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "rungo-ios/rungo-ios-Prefix.pch";
+				INFOPLIST_FILE = "rungo-iosTests/rungo-iosTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		166A02C019AAF69200D29108 /* Build configuration list for PBXProject "rungo-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				166A02EF19AAF69200D29108 /* Debug */,
+				166A02F019AAF69200D29108 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		166A02F119AAF69200D29108 /* Build configuration list for PBXNativeTarget "rungo-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				166A02F219AAF69200D29108 /* Debug */,
+				166A02F319AAF69200D29108 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		166A02F419AAF69200D29108 /* Build configuration list for PBXNativeTarget "rungo-iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				166A02F519AAF69200D29108 /* Debug */,
+				166A02F619AAF69200D29108 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 166A02BD19AAF69200D29108 /* Project object */;
+}
