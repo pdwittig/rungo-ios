@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16666D0019AAF6F9006E44F3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16666CFF19AAF6F9006E44F3 /* MainStoryboard.storyboard */; };
 		166A02C919AAF69200D29108 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A02C819AAF69200D29108 /* Foundation.framework */; };
 		166A02CB19AAF69200D29108 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A02CA19AAF69200D29108 /* CoreGraphics.framework */; };
 		166A02CD19AAF69200D29108 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A02CC19AAF69200D29108 /* UIKit.framework */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16666CFF19AAF6F9006E44F3 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		166A02C519AAF69200D29108 /* rungo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rungo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		166A02C819AAF69200D29108 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		166A02CA19AAF69200D29108 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -107,8 +109,7 @@
 		166A02CE19AAF69200D29108 /* rungo-ios */ = {
 			isa = PBXGroup;
 			children = (
-				166A02D719AAF69200D29108 /* PWAppDelegate.h */,
-				166A02D819AAF69200D29108 /* PWAppDelegate.m */,
+				16666CFF19AAF6F9006E44F3 /* MainStoryboard.storyboard */,
 				166A02DA19AAF69200D29108 /* Images.xcassets */,
 				166A02CF19AAF69200D29108 /* Supporting Files */,
 			);
@@ -118,6 +119,8 @@
 		166A02CF19AAF69200D29108 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				166A02D719AAF69200D29108 /* PWAppDelegate.h */,
+				166A02D819AAF69200D29108 /* PWAppDelegate.m */,
 				166A02D019AAF69200D29108 /* rungo-ios-Info.plist */,
 				166A02D119AAF69200D29108 /* InfoPlist.strings */,
 				166A02D419AAF69200D29108 /* main.m */,
@@ -220,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16666D0019AAF6F9006E44F3 /* MainStoryboard.storyboard in Resources */,
 				166A02D319AAF69200D29108 /* InfoPlist.strings in Resources */,
 				166A02DB19AAF69200D29108 /* Images.xcassets in Resources */,
 			);
@@ -438,6 +442,7 @@
 				166A02F319AAF69200D29108 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		166A02F419AAF69200D29108 /* Build configuration list for PBXNativeTarget "rungo-iosTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +451,7 @@
 				166A02F619AAF69200D29108 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
