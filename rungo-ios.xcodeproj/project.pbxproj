@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		16666D0019AAF6F9006E44F3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16666CFF19AAF6F9006E44F3 /* MainStoryboard.storyboard */; };
+		16666D0419AAF988006E44F3 /* PWHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16666D0319AAF988006E44F3 /* PWHomeViewController.m */; };
 		166A02C919AAF69200D29108 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A02C819AAF69200D29108 /* Foundation.framework */; };
 		166A02CB19AAF69200D29108 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A02CA19AAF69200D29108 /* CoreGraphics.framework */; };
 		166A02CD19AAF69200D29108 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A02CC19AAF69200D29108 /* UIKit.framework */; };
@@ -34,6 +35,8 @@
 
 /* Begin PBXFileReference section */
 		16666CFF19AAF6F9006E44F3 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		16666D0219AAF987006E44F3 /* PWHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWHomeViewController.h; sourceTree = "<group>"; };
+		16666D0319AAF988006E44F3 /* PWHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWHomeViewController.m; sourceTree = "<group>"; };
 		166A02C519AAF69200D29108 /* rungo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rungo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		166A02C819AAF69200D29108 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		166A02CA19AAF69200D29108 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -76,6 +79,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16666D0119AAF933006E44F3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				16666D0219AAF987006E44F3 /* PWHomeViewController.h */,
+				16666D0319AAF988006E44F3 /* PWHomeViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		166A02BC19AAF69200D29108 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +121,7 @@
 		166A02CE19AAF69200D29108 /* rungo-ios */ = {
 			isa = PBXGroup;
 			children = (
+				16666D0119AAF933006E44F3 /* Controllers */,
 				16666CFF19AAF6F9006E44F3 /* MainStoryboard.storyboard */,
 				166A02DA19AAF69200D29108 /* Images.xcassets */,
 				166A02CF19AAF69200D29108 /* Supporting Files */,
@@ -245,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				166A02D519AAF69200D29108 /* main.m in Sources */,
+				16666D0419AAF988006E44F3 /* PWHomeViewController.m in Sources */,
 				166A02D919AAF69200D29108 /* PWAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
