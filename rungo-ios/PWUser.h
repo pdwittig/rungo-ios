@@ -11,6 +11,8 @@
 
 @interface PWUser : NSObject
 
-+(void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation;
+typedef void (^responseCallback)(BOOL success, NSError *error);
+
++(void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation withCallback:(responseCallback)callback;
 
 @end

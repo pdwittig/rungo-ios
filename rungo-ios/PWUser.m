@@ -11,18 +11,26 @@
 
 @implementation PWUser
 
-+ (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation {
+
++ (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation withCallback:(responseCallback)callback {
     
     AFHTTPRequestOperationManager *manager =[AFHTTPRequestOperationManager manager];
     
     NSDictionary *params = @{@"email":email, @"password":password, @"password_confirmation":passwordConfirmation};
     
-    [manager POST:@"http://rungoapi.herokuapp.com/api/users/" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Success %@", responseObject);
+    [manager POST:@"http://localhost:3000/api/users/" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        callback(YES, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"failure, %@", error);
+        NSDictionary *response = [self parseJson:[operation responseString]];
+        NSError *apiError = [NSError errorWithDomain:@"apiError" code:0 userInfo:response];
+        callback(NO,apiError);
     }];
+}
 
++ (NSDictionary *) parseJson:(id)object {
+    NSError *error;
+    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:[object dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
+    return response;
 }
 
 @end
