@@ -11,6 +11,23 @@
 
 @implementation PWUser
 
+# pragma mark - Contructors
+
+- (id) initWithEmail:(NSString *)email authToken:(NSString *)authToken {
+    self = [super init];
+    
+    if (self) {
+        self.email = email;
+        self.authToken = authToken;
+    }
+    
+    return self;
+}
+
++ (id) userWithEmail:(NSString *)email authToken:(NSString *)authToken {
+    return [[self alloc] initWithEmail:email authToken:authToken];
+}
+
 
 + (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation withCallback:(responseCallback)callback {
     
@@ -27,14 +44,14 @@
     }];
 }
 
-+ (id) currentUserAuthToken {
++ (id) currentUser {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *authToken = [defaults objectForKey:@"authToken"];
-    if ([authToken length] == 0){
-        return NO;
+    PWUser *currentUser = [defaults objectForKey:@"currentUser"];
+    if (currentUser){
+        return currentUser;
     }
     else {
-        return authToken;
+        return NO;
     }
 }
 
