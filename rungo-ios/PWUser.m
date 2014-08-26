@@ -29,13 +29,14 @@
 }
 
 
-+ (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation withCallback:(responseCallback)callback {
+#pragma mark - API Queries
++ (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation callback:(responseCallback)callback {
     
-    AFHTTPRequestOperationManager *manager =[AFHTTPRequestOperationManager manager];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     NSDictionary *params = @{@"email":email, @"password":password, @"password_confirmation":passwordConfirmation};
     
-    [manager POST:@"http://localhost:3000/api/users/" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[self endpointUrlWithResource:@"users/"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         callback(YES, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSDictionary *response = [self parseJson:[operation responseString]];
@@ -44,6 +45,20 @@
     }];
 }
 
++ (void) loginWithEmail:(NSString *)email password:(NSString *)password callback:(responseCallback)calllback{
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    NSDictionary *params = @{@"email":email, @"password":password};
+    
+    [manager GET:[self endpointUrlWithResource:@"sessions/"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", [operation responseString]);
+    }];
+}
+
+# pragma mark - Misc
 + (id) currentUser {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     PWUser *currentUser = [defaults objectForKey:@"currentUser"];
@@ -61,6 +76,10 @@
     NSError *error;
     NSDictionary *response = [NSJSONSerialization JSONObjectWithData:[object dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
     return response;
+}
+
++ (NSString *) endpointUrlWithResource:(NSString *)resource {
+    return [@"http://localhost:3000/api/" stringByAppendingString:resource];
 }
 
 @end

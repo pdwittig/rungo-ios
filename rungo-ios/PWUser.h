@@ -18,8 +18,9 @@ typedef void (^responseCallback)(BOOL success, NSError *error);
 
 - (id) initWithEmail:(NSString *)email authToken:(NSString *)authToken;
 + (id) userWithEmail:(NSString *)email authToken:(NSString *)authToken;
-+ (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation withCallback:(responseCallback)callback;
++ (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation callback:(responseCallback)callback;
 + (id) currentUser;
++ (void) loginWithEmail:(NSString *)email password:(NSString *)password callback:(responseCallback)calllback;
 
 
 @end
