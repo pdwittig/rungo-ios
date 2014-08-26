@@ -14,14 +14,15 @@
 # pragma mark - Contructors
 
 - (id) initWithEmail:(NSString *)email authToken:(NSString *)authToken {
-    self = [super init];
-    
-    if (self) {
+    if ([email length] > 0 && [authToken length] > 0){
+        self = [super init];
         self.email = email;
         self.authToken = authToken;
+        return self;
     }
-    
-    return self;
+    else {
+        return NO;
+    }
 }
 
 + (id) userWithEmail:(NSString *)email authToken:(NSString *)authToken {
@@ -37,31 +38,46 @@
     NSDictionary *params = @{@"email":email, @"password":password, @"password_confirmation":passwordConfirmation};
     
     [manager POST:[self endpointUrlWithResource:@"users/"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
         callback(YES, nil);
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
         NSDictionary *response = [self parseJson:[operation responseString]];
         NSError *apiError = [NSError errorWithDomain:@"apiError" code:0 userInfo:response];
         callback(NO,apiError);
+        
     }];
 }
 
-+ (void) loginWithEmail:(NSString *)email password:(NSString *)password callback:(responseCallback)calllback{
++ (void) loginWithEmail:(NSString *)email password:(NSString *)password callback:(responseCallback)callback {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     NSDictionary *params = @{@"email":email, @"password":password};
     
-    [manager GET:[self endpointUrlWithResource:@"sessions/"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@", responseObject);
+    [manager POST:[self endpointUrlWithResource:@"sessions/"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        id email = [responseObject objectForKey:@"email"];
+        id authToken = [[responseObject objectForKey:@"ApiKey"] objectForKey:@"access_token"];
+        [self setCurrentUserWithEmail:email authToken:authToken];
+        callback(YES, nil);
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", [operation responseString]);
+        
+        NSDictionary *response = [self parseJson:[operation responseString]];
+        NSError *apiError = [NSError errorWithDomain:@"apiError" code:0 userInfo:response];
+        callback(NO,apiError);
+        
     }];
 }
 
 # pragma mark - Misc
+
 + (id) currentUser {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    PWUser *currentUser = [defaults objectForKey:@"currentUser"];
+    NSDictionary   *currentUserDict = [defaults objectForKey:@"currentUser"];
+    PWUser *currentUser = [self userWithEmail:[currentUserDict objectForKey:@"email"] authToken:[currentUserDict objectForKey:@"authToken"]];
     if (currentUser){
         return currentUser;
     }
@@ -69,6 +85,13 @@
         return NO;
     }
 }
+
++ (void) setCurrentUserWithEmail:(NSString *)email authToken:(NSString *)authToken {
+    NSDictionary *currentUser = @{@"email":email, @"authToken":authToken};
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:currentUser forKey:@"currentUser"];
+}
+
 
 #pragma mark - Helpers
 

@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
 - (IBAction)login:(id)sender;
+- (void) displayError:(NSString *)message;
 
 @end

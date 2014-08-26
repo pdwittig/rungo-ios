@@ -7,6 +7,7 @@
 //
 
 #import "PWLoginViewController.h"
+#import "PWUser.h"
 
 @interface PWLoginViewController ()
 
@@ -21,21 +22,36 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     [self.navigationItem setHidesBackButton:YES];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)login:(id)sender {
+    [self validateUserInput];
+    [PWUser loginWithEmail:self.emailField.text password:self.passwordField.text callback:^(BOOL success, NSError *error) {
+        if (success) {
+            [self.navigationController popViewControllerAnimated:NO];
+        }
+        else {
+            [self displayError:[[error userInfo] objectForKey:@"error_message"]];
+        }
+    }];
 }
+
+#pragma mark  - Helpers
+
+- (void) validateUserInput {
+    if ([self.emailField.text length] == 0 || self.passwordField.text == 0){
+        [self displayError:@"Make sure you enter an email, password"];
+    }
+}
+
+- (void) displayError:(NSString *)message {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alertView show];
+}
+
+
+
 @end
