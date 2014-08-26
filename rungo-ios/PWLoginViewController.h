@@ -10,4 +10,9 @@
 
 @interface PWLoginViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
+- (IBAction)login:(id)sender;
+
 @end

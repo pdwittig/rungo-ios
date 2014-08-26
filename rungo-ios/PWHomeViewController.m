@@ -26,7 +26,8 @@
     [super viewDidAppear:animated];
     
     //Redirect to login if no auth token exists
-    id currentUser = [PWUser currentUserAuthToken];
+    id currentUser = [PWUser currentUser];
+    
     if (!currentUser){
         [self performSegueWithIdentifier:@"showLogin" sender:self];
     }
