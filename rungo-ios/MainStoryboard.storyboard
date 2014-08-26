@@ -26,15 +26,15 @@
             </objects>
             <point key="canvasLocation" x="935" y="148"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="yXg-l3-VR2">
             <objects>
-                <viewController id="C3O-vZ-X2d" sceneMemberID="viewController">
+                <viewController id="C3O-vZ-X2d" customClass="PWLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yYm-p7-D9U"/>
                         <viewControllerLayoutGuide type="bottom" id="SKq-cp-oMn"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1Se-Ph-8he" customClass="PWS">
+                    <view key="view" contentMode="scaleToFill" id="1Se-Ph-8he">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>

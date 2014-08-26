@@ -38,16 +38,28 @@
 
 - (IBAction)signup:(id)sender {
     [self validateUserInput];
-    [PWUser createUserWithEmail:self.emailField.text password:self.passwordField.text passwordConfirmation:self.passwordConfirmationField.text];
+    [PWUser createUserWithEmail:self.emailField.text password:self.passwordField.text passwordConfirmation:self.passwordConfirmationField.text withCallback:^(BOOL success, NSError *error){
+        if (success){
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else {
+            [self displayError:[[error userInfo] objectForKey:@"error_message"]];
+        }
+    }];
+ 
 }
 
 #pragma mark  - Helpers
 
 - (void) validateUserInput {
-    if ( [self.emailField.text length] == 0 || self.passwordField.text == 0 || self.passwordConfirmationField.text == 0){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Make sure you enter an email, password, and password confirmation" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alertView show];
+    if ([self.emailField.text length] == 0 || self.passwordField.text == 0 || self.passwordConfirmationField.text == 0){
+        [self displayError:@"Make sure you enter an email, password, and password confirmation"];
     }
+}
+
+- (void) displayError:(NSString *)message {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alertView show];
 }
 
 @end
