@@ -7,6 +7,7 @@
 //
 
 #import "PWHomeViewController.h"
+#import "PWUser.h"
 
 @interface PWHomeViewController ()
 
@@ -16,10 +17,19 @@
 
 
 - (void)viewDidLoad
+
 {
     [super viewDidLoad];
-    NSLog(@"Home View Controller - view did load");
-    [self performSegueWithIdentifier:@"showLogin" sender:self];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    //Redirect to login if no auth token exists
+    id currentUser = [PWUser currentUserAuthToken];
+    if (!currentUser){
+        [self performSegueWithIdentifier:@"showLogin" sender:self];
+    }
 }
 
 /*
