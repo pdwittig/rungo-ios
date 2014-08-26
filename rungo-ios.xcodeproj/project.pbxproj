@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1644CEA119AC4FBC001B5513 /* PWLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1644CEA019AC4FBC001B5513 /* PWLoginViewController.m */; };
+		1644CEA319AC5BAC001B5513 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1644CEA219AC5BAC001B5513 /* Security.framework */; };
 		16666D0019AAF6F9006E44F3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16666CFF19AAF6F9006E44F3 /* MainStoryboard.storyboard */; };
 		16666D0419AAF988006E44F3 /* PWHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16666D0319AAF988006E44F3 /* PWHomeViewController.m */; };
 		166A02C919AAF69200D29108 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A02C819AAF69200D29108 /* Foundation.framework */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		1644CE9F19AC4FBC001B5513 /* PWLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWLoginViewController.h; sourceTree = "<group>"; };
 		1644CEA019AC4FBC001B5513 /* PWLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWLoginViewController.m; sourceTree = "<group>"; };
+		1644CEA219AC5BAC001B5513 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		16666CFF19AAF6F9006E44F3 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		16666D0219AAF987006E44F3 /* PWHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWHomeViewController.h; sourceTree = "<group>"; };
 		16666D0319AAF988006E44F3 /* PWHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWHomeViewController.m; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1644CEA319AC5BAC001B5513 /* Security.framework in Frameworks */,
 				166A02CB19AAF69200D29108 /* CoreGraphics.framework in Frameworks */,
 				166A02CD19AAF69200D29108 /* UIKit.framework in Frameworks */,
 				166A02C919AAF69200D29108 /* Foundation.framework in Frameworks */,
@@ -128,6 +131,7 @@
 		166A02C719AAF69200D29108 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1644CEA219AC5BAC001B5513 /* Security.framework */,
 				166A02C819AAF69200D29108 /* Foundation.framework */,
 				166A02CA19AAF69200D29108 /* CoreGraphics.framework */,
 				166A02CC19AAF69200D29108 /* UIKit.framework */,

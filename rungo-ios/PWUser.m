@@ -27,6 +27,19 @@
     }];
 }
 
++ (id) currentUserAuthToken {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *authToken = [defaults objectForKey:@"authToken"];
+    if ([authToken length] == 0){
+        return NO;
+    }
+    else {
+        return authToken;
+    }
+}
+
+#pragma mark - Helpers
+
 + (NSDictionary *) parseJson:(id)object {
     NSError *error;
     NSDictionary *response = [NSJSONSerialization JSONObjectWithData:[object dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];

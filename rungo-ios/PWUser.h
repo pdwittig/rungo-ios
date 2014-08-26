@@ -13,6 +13,8 @@
 
 typedef void (^responseCallback)(BOOL success, NSError *error);
 
-+(void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation withCallback:(responseCallback)callback;
++ (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation withCallback:(responseCallback)callback;
+
++ (id) currentUserAuthToken;
 
 @end
