@@ -16,9 +16,11 @@
 - (id) initWithEmail:(NSString *)email authToken:(NSString *)authToken {
     if ([email length] > 0 && [authToken length] > 0){
         self = [super init];
-        self.email = email;
-        self.authToken = authToken;
-        return self;
+        if (self) {
+            self.email = email;
+            self.authToken = authToken;
+        }
+    return self;
     }
     else {
         return NO;
@@ -31,6 +33,7 @@
 
 
 #pragma mark - API Queries
+
 + (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation callback:(responseCallback)callback {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
