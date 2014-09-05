@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PWApiClient.h"
 
-@interface PWAgency : NSObject
+
+@interface PWAgency : NSObject <PWApiClientDelegate>
 
 @property(nonatomic, strong) NSString *name;
 

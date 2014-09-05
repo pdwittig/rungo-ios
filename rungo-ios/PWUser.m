@@ -62,7 +62,7 @@
     [manager POST:[self endpointUrlWithResource:@"sessions/"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         id email = [responseObject objectForKey:@"email"];
-        id authToken = [[responseObject objectForKey:@"api_key"] objectForKey:@"access_token"];
+        id authToken = [[responseObject objectForKey:@"auth_token"] objectForKey:@"access_token"];
         [self setCurrentUserWithEmail:email authToken:authToken];
         callback(YES, nil);
         

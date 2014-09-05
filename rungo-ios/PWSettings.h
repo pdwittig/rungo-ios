@@ -11,17 +11,18 @@
 
 @interface PWSettings : NSObject
 
-- (id) initWithAgency:(PWAgency *)agency;
-+ (id) settingsWithAgency:(PWAgency *)agency;
-
-//TODO - hookup to backend when settings API is implemented
-+ (id) fetchSettings;
+typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject);
 
 @property(nonatomic, strong) PWAgency *agency;
 @property(nonatomic, strong) NSString *nonDirectionalRoute;
 @property(nonatomic, strong) NSString *directionalRoute;
 @property(nonatomic, strong) NSDate *departureTime;
 
+- (id) initWithAgency:(PWAgency *)agency;
++ (id) settingsWithAgency:(PWAgency *)agency;
+
+//TODO - hookup to backend when settings API is implemented
++ (id) fetchSettings;
 
 
 @end

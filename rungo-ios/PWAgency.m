@@ -7,13 +7,10 @@
 //
 
 #import "PWAgency.h"
-#import <AFNetworking/AFNetworking.h>
 
 @implementation PWAgency
 
 # pragma mark - Contructors
-
-@synthesize name;
 
 - (id) initWithName:(NSString *)name {
     self = [super init];
@@ -33,45 +30,29 @@
 
 + (void) fetchAllAgenciesWithCallback:(responseCallback)callback {
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    PWApiClient *apiClient = [PWApiClient sharedInstance];
     
-    [manager GET:[self endpointUrlWithResource:@"agencies/"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-        NSArray *agencies = [self createAgencies:responseObject];
-        callback(YES, nil, agencies);
+    //Kind of ghetto - figure out how to implement better
+    apiClient.delegate = [[self alloc] init];
     
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        NSDictionary *response = [self parseJson:[operation responseString]];
-        NSError *apiError = [NSError errorWithDomain:@"apiError" code:0 userInfo:response];
-        callback(NO, apiError, nil);
-        
-    }];
+    [apiClient apiRequest:@"/agencies"
+               httpMethod:@"GET"
+                   params:nil
+                 callback:(responseCallback)callback];
+    
 }
 
-#pragma mark - Helpers
+#pragma mark - Parsing
 
-
-+ (NSMutableArray *) createAgencies:(NSArray *)agencyData {
+- (id) parseData:(id)agencyData {
     NSMutableArray *agencies = [NSMutableArray array];
     for (NSDictionary *agencyDict in agencyData) {
         
-        PWAgency *agency = [self agencyWithName:[agencyDict objectForKey:@"name"]];
+        PWAgency *agency = [PWAgency agencyWithName:[agencyDict objectForKey:@"name"]];
         [agencies addObject:agency];
         
     }
     return agencies;
-}
-
-+ (NSDictionary *) parseJson:(id)object {
-    NSError *error;
-    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:[object dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
-    return response;
-}
-
-+ (NSString *) endpointUrlWithResource:(NSString *)resource {
-    return [@"http://localhost:3000/api/" stringByAppendingString:resource];
 }
 
 @end
