@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PWItemPickerViewController.h"
+#import "PWSettings.h"
 
-@interface PWSettingsViewController : UITableViewController
+@interface PWSettingsViewController : UITableViewController <ItemPickerViewControllerDelegate>
 
 @property(nonatomic, strong) NSArray *agencyList;
+@property (weak, nonatomic) IBOutlet UILabel *agencyLabel;
+@property (nonatomic, strong) PWSettings *settings;
 
 @end

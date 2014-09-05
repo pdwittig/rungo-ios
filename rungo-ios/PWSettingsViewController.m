@@ -9,6 +9,7 @@
 #import "PWSettingsViewController.h"
 #import "PWItemPickerViewController.h"
 #import "PWAgency.h"
+#import "PWSettings.h"
 
 @interface PWSettingsViewController ()
 
@@ -19,12 +20,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [PWAgency fetchAllAgenciesWithCallback:^(BOOL success, NSError *error, id responseObject) {
-        if (success){
-            self.agencyList = responseObject;
-        }
-    }];
     
+    //Set current user settings
+    self.settings = [PWSettings fetchSettings];
+    
+    //Fetch the required transit data
+    [self fetchTransitData];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateLabels];
 }
 
 
@@ -66,8 +73,10 @@
     PWItemPickerViewController *itemPickerViewController = (PWItemPickerViewController *)segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"showAgencyItemPicker"]) {
         
-//        NSLog(@"%@", [[self.agencyList objectAtIndex:0] objectForKey:@"name"]);
-        itemPickerViewController.pickerItems = [self extractItemsLabels:self.agencyList labelKey:@"name"];
+//        itemPickerViewController.pickerItems = [self extractItemsLabels:self.agencyList labelKey:@"name"];
+        itemPickerViewController.pickerItems = self.agencyList;
+        itemPickerViewController.pickerItemsKlass = [PWAgency class];
+        itemPickerViewController.delegate = self;
     }
  
 }
@@ -80,6 +89,26 @@
         [itemLabels addObject:[item valueForKey:labelKey]];
     }
     return itemLabels;
+}
+
+- (void) fetchTransitData {
+    [PWAgency fetchAllAgenciesWithCallback:^(BOOL success, NSError *error, id responseObject) {
+        if (success){
+            self.agencyList = responseObject;
+        }
+    }];
+}
+
+-(void) updateLabels {
+    self.agencyLabel.text = self.settings.agency.name;
+}
+
+#pragma mark - Delegate Methods
+
+- (void) didSelectItem:(id)item klass:(Class)klass {
+    if (klass == [PWAgency class]) {
+        self.settings.agency = item;
+    }
 }
 
 

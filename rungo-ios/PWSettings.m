@@ -10,4 +10,24 @@
 
 @implementation PWSettings
 
+- (id) initWithAgency:(PWAgency *)agency {
+    self = [super init];
+
+    if (self) {
+        self.agency = agency;
+    }
+    return self;
+    
+}
+
++ (id) settingsWithAgency:(PWAgency *)agency {
+    return [[self alloc] initWithAgency:agency];
+}
+
+//TODO - hookup to backend when settings API is implemented
++ (id)fetchSettings {
+    PWAgency *agency = [PWAgency agencyWithName:@"Phils Train"];
+    return [PWSettings settingsWithAgency:agency];
+}
+
 @end

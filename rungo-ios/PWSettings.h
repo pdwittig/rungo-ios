@@ -7,10 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PWAgency.h"
 
 @interface PWSettings : NSObject
 
-@property(nonatomic, strong) NSString *agency;
+- (id) initWithAgency:(PWAgency *)agency;
++ (id) settingsWithAgency:(PWAgency *)agency;
+
+//TODO - hookup to backend when settings API is implemented
++ (id) fetchSettings;
+
+@property(nonatomic, strong) PWAgency *agency;
 @property(nonatomic, strong) NSString *nonDirectionalRoute;
 @property(nonatomic, strong) NSString *directionalRoute;
 @property(nonatomic, strong) NSDate *departureTime;

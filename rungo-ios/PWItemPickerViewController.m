@@ -40,14 +40,19 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    NSString *listItemLabel = [self.pickerItems objectAtIndex:indexPath.row];
+    id item = [self.pickerItems objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = listItemLabel;
+    cell.textLabel.text = [item name];
     
     return cell;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    id item = [self.pickerItems objectAtIndex:indexPath.row];
+    
+    [self.delegate didSelectItem:item klass:self.pickerItemsKlass];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
