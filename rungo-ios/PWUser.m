@@ -36,21 +36,32 @@
 
 + (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation callback:(responseCallback)callback {
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    
+    PWApiClient *apiClient = [PWApiClient sharedInstance];
+    
+    apiClient.delegate = [[self alloc] init];
     
     NSDictionary *params = @{@"email":email, @"password":password, @"password_confirmation":passwordConfirmation};
     
-    [manager POST:[self endpointUrlWithResource:@"users/"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        callback(YES, nil);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        NSDictionary *response = [self parseJson:[operation responseString]];
-        NSError *apiError = [NSError errorWithDomain:@"apiError" code:0 userInfo:response];
-        callback(NO,apiError);
-        
-    }];
+   [apiClient postRequest:@"users/"
+                   params:params
+                 callback:callback];
+    
+//
+//    [manager POST:[self endpointUrlWithResource:@"users/"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//    
+//        callback(YES, nil, responseObject);
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        NSDictionary *response = [self parseJson:[operation responseString]];
+//        NSError *apiError = [NSError errorWithDomain:@"apiError" code:0 userInfo:response];
+//        callback(NO,apiError, nil);
+//        
+//    }];
+    
+
 }
 
 + (void) loginWithEmail:(NSString *)email password:(NSString *)password callback:(responseCallback)callback {
@@ -64,13 +75,13 @@
         id email = [responseObject objectForKey:@"email"];
         id authToken = [[responseObject objectForKey:@"auth_token"] objectForKey:@"access_token"];
         [self setCurrentUserWithEmail:email authToken:authToken];
-        callback(YES, nil);
+        callback(YES, nil, responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         NSDictionary *response = [self parseJson:[operation responseString]];
         NSError *apiError = [NSError errorWithDomain:@"apiError" code:0 userInfo:response];
-        callback(NO,apiError);
+        callback(NO,apiError, nil);
         
     }];
 }
@@ -97,6 +108,11 @@
 
 
 #pragma mark - Helpers
+
+- (id) parseData:(id)data {
+    id something;
+    return something;
+}
 
 + (NSDictionary *) parseJson:(id)object {
     NSError *error;

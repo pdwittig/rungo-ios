@@ -35,8 +35,7 @@
     //Kind of ghetto - figure out how to implement better
     apiClient.delegate = [[self alloc] init];
     
-    [apiClient apiRequest:@"/agencies"
-               httpMethod:@"GET"
+    [apiClient getRequest:@"/agencies"
                    params:nil
                  callback:(responseCallback)callback];
     

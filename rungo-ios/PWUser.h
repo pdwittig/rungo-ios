@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PWApiClient.h"
 
+@interface PWUser : NSObject <PWApiClientDelegate>
 
-@interface PWUser : NSObject
-
-typedef void (^responseCallback)(BOOL success, NSError *error);
+typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject);
 
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *authToken;

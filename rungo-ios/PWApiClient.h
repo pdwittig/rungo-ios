@@ -20,7 +20,9 @@ typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject
 
 @property(nonatomic, strong) id <PWApiClientDelegate> delegate;
 
-- (void) apiRequest:(NSString *)url httpMethod:(NSString *)httpMethod params:(NSString *)params callback:(responseCallback)callback;
+- (void) getRequest:(NSString *)url params:(NSDictionary *)params callback:(responseCallback)callback;
+- (void) postRequest:(NSString *)url params:(NSDictionary *)params callback:(responseCallback)callback;
+
 
 - (PWApiClient *) init;
 + (PWApiClient *) sharedInstance;
