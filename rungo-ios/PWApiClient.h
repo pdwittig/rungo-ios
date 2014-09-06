@@ -10,6 +10,7 @@
 
 @protocol PWApiClientDelegate <NSObject>
 
+//Name needs to be changed - intermediary handler?
 - (id) parseData:(id)data;
 
 @end

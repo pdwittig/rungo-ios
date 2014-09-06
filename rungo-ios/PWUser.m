@@ -36,57 +36,29 @@
 
 + (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation callback:(responseCallback)callback {
     
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    
-    PWApiClient *apiClient = [PWApiClient sharedInstance];
-    
-    apiClient.delegate = [[self alloc] init];
-    
     NSDictionary *params = @{@"email":email, @"password":password, @"password_confirmation":passwordConfirmation};
     
+    PWApiClient *apiClient = [PWApiClient sharedInstance];
+    apiClient.delegate = [[self alloc] init];
    [apiClient postRequest:@"users/"
                    params:params
                  callback:callback];
-    
-//
-//    [manager POST:[self endpointUrlWithResource:@"users/"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//    
-//        callback(YES, nil, responseObject);
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//        NSDictionary *response = [self parseJson:[operation responseString]];
-//        NSError *apiError = [NSError errorWithDomain:@"apiError" code:0 userInfo:response];
-//        callback(NO,apiError, nil);
-//        
-//    }];
-    
 
 }
 
 + (void) loginWithEmail:(NSString *)email password:(NSString *)password callback:(responseCallback)callback {
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
     NSDictionary *params = @{@"email":email, @"password":password};
     
-    [manager POST:[self endpointUrlWithResource:@"sessions/"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        id email = [responseObject objectForKey:@"email"];
-        id authToken = [[responseObject objectForKey:@"auth_token"] objectForKey:@"access_token"];
-        [self setCurrentUserWithEmail:email authToken:authToken];
-        callback(YES, nil, responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        NSDictionary *response = [self parseJson:[operation responseString]];
-        NSError *apiError = [NSError errorWithDomain:@"apiError" code:0 userInfo:response];
-        callback(NO,apiError, nil);
-        
-    }];
+    PWApiClient *apiClient = [PWApiClient sharedInstance];
+    apiClient.delegate = [[self alloc] init];
+    [apiClient postRequest:@"sessions/"
+                    params:params
+                  callback:callback];
+    
 }
 
-# pragma mark - Misc
+# pragma mark - NSUserDefault stuff
 
 + (id) currentUser {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -109,19 +81,14 @@
 
 #pragma mark - Helpers
 
+//Name needs to be changed - intermediary handler?
 - (id) parseData:(id)data {
-    id something;
-    return something;
+    NSLog(@"%@", [data[@"email"] class]);
+    
+    [[self  class] setCurrentUserWithEmail:data[@"email"] authToken:data[@"auth_token"][@"access_token"]];
+    id nothing;
+    return nothing;
 }
 
-+ (NSDictionary *) parseJson:(id)object {
-    NSError *error;
-    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:[object dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
-    return response;
-}
-
-+ (NSString *) endpointUrlWithResource:(NSString *)resource {
-    return [@"http://localhost:3000/api/" stringByAppendingString:resource];
-}
 
 @end

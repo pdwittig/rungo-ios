@@ -30,7 +30,10 @@
 - (IBAction)login:(id)sender {
     [self validateUserInput];
     [PWUser loginWithEmail:self.emailField.text password:self.passwordField.text callback:^(BOOL success, NSError *error, id responseObject) {
+       
         if (success) {
+            
+            NSLog(@"%@", self);
             [self.navigationController popViewControllerAnimated:NO];
         }
         else {
