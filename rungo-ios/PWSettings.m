@@ -25,10 +25,18 @@
 }
 
 //TODO - hookup to backend when settings API is implemented
-+ (id)fetchSettings {
-    
++ (id) fetchSettingsForUserAuthToken:(NSString *)authToken callback:(responseCallback)callback {
+
     PWAgency *agency = [PWAgency agencyWithName:@"Phils Train"];
     return [PWSettings settingsWithAgency:agency];
+}
+
++ (id) fetchSettings {
+    return nil;
+}
+
+-(id)handleApiResponse:(id)data {
+    return nil;
 }
 
 @end

@@ -10,8 +10,7 @@
 
 @protocol PWApiClientDelegate <NSObject>
 
-//Name needs to be changed - intermediary handler?
-- (id) parseData:(id)data;
+- (id) handleApiResponse:(id)data;
 
 @end
 
@@ -21,8 +20,11 @@ typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject
 
 @property(nonatomic, strong) id <PWApiClientDelegate> delegate;
 
-- (void) getRequest:(NSString *)url params:(NSDictionary *)params callback:(responseCallback)callback;
-- (void) postRequest:(NSString *)url params:(NSDictionary *)params callback:(responseCallback)callback;
+//Optional options param
+// - leave nil under normal circumstances
+// - pass 1 if the response requires no model proccesing (via delegate calls)
+- (void) getRequest:(NSString *)url params:(NSDictionary *)params options:(NSNumber *)options callback:(responseCallback)callback;
+- (void) postRequest:(NSString *)url params:(NSDictionary *)params options:(NSNumber *)options callback:(responseCallback)callback;
 
 
 - (PWApiClient *) init;

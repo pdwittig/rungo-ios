@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "PWAgency.h"
+#import "PWApiClient.h"
 
-@interface PWSettings : NSObject
+@interface PWSettings : NSObject <PWApiClientDelegate>
 
 typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject);
 
@@ -22,7 +23,9 @@ typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject
 + (id) settingsWithAgency:(PWAgency *)agency;
 
 //TODO - hookup to backend when settings API is implemented
-+ (id) fetchSettings;
++ (id) fetchSettingsForUserAuthToken:(NSString *)authToken callback:(responseCallback)callback;
+- (id) handleApiResponse:(id)data;
++(id) fetchSettings;
 
 
 @end

@@ -37,15 +37,16 @@
     
     [apiClient getRequest:@"/agencies"
                    params:nil
+                  options:nil
                  callback:(responseCallback)callback];
     
 }
 
 #pragma mark - Parsing
 
-- (id) parseData:(id)agencyData {
+- (id) handleApiResponse:(id)data {
     NSMutableArray *agencies = [NSMutableArray array];
-    for (NSDictionary *agencyDict in agencyData) {
+    for (NSDictionary *agencyDict in data) {
         
         PWAgency *agency = [PWAgency agencyWithName:[agencyDict objectForKey:@"name"]];
         [agencies addObject:agency];

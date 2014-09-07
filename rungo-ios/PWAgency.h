@@ -21,5 +21,6 @@ typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject
 + (id) agencyWithName:(NSString *)name;
 
 + (void) fetchAllAgenciesWithCallback:(responseCallback)callback;
+- (id) handleApiResponse:(id)data;
 
 @end

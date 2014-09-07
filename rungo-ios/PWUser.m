@@ -42,6 +42,7 @@
     apiClient.delegate = [[self alloc] init];
    [apiClient postRequest:@"users/"
                    params:params
+                  options:[NSNumber numberWithInt:1]
                  callback:callback];
 
 }
@@ -54,6 +55,7 @@
     apiClient.delegate = [[self alloc] init];
     [apiClient postRequest:@"sessions/"
                     params:params
+                   options:nil
                   callback:callback];
     
 }
@@ -81,13 +83,11 @@
 
 #pragma mark - Helpers
 
-//Name needs to be changed - intermediary handler?
-- (id) parseData:(id)data {
-    NSLog(@"%@", [data[@"email"] class]);
+- (id) handleApiResponse:(id)data {
     
     [[self  class] setCurrentUserWithEmail:data[@"email"] authToken:data[@"auth_token"][@"access_token"]];
-    id nothing;
-    return nothing;
+
+    return nil;
 }
 
 
