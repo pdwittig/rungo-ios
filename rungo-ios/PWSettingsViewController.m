@@ -22,12 +22,8 @@
     [super viewDidLoad];
     
     [self initDataMgrs];
-    
-    //Set current user settings
     [self loadSettings];
-    
-    //Fetch the required transit data
-    [self fetchTransitData];
+    [self loadTransitData];
     
 }
 
@@ -46,7 +42,6 @@
     PWItemPickerViewController *itemPickerViewController = (PWItemPickerViewController *)segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"showAgencyItemPicker"]) {
         
-//        itemPickerViewController.pickerItems = [self extractItemsLabels:self.agencyList labelKey:@"name"];
         itemPickerViewController.pickerItems = self.agencyList;
         itemPickerViewController.pickerItemsKlass = [PWAgency class];
         itemPickerViewController.delegate = self;
@@ -56,20 +51,12 @@
 
 #pragma mark - Helpers
 
-//- (NSMutableArray *) extractItemsLabels:(NSArray *)items labelKey:(NSString *)labelKey {
-//    NSMutableArray *itemLabels = [NSMutableArray array];
-//    for (id item in items) {
-//        [itemLabels addObject:[item valueForKey:labelKey]];
-//    }
-//    return itemLabels;
-//}
-
 - (void) initDataMgrs {
     self.agencyMgr = [[PWAgencyMgr alloc] init];
     self.settingsMgr = [[PWSettingsMgr alloc] init];
 }
 
-- (void) fetchTransitData {
+- (void) loadTransitData {
     [self.agencyMgr fetchAllAgenciesWithCallback:^(BOOL success, NSError *error, id responseObject) {
         if (success){
             self.agencyList = responseObject;
@@ -78,9 +65,10 @@
 }
 
 - (void) loadSettings {
+    //TODO - How should I handle errors here?
     PWUser *user = [PWUser currentUser];
     [self.settingsMgr fetchSettingsForUserAuthToken:[user authToken] callback:^(BOOL success, NSError *error, id responseObject) {
-        NSLog(@"loadSettings callback in the controller");
+        self.settings = responseObject;
     }];
 }
 
@@ -95,6 +83,5 @@
         self.settings.agency = item;
     }
 }
-
 
 @end

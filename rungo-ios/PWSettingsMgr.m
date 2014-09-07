@@ -34,8 +34,12 @@
 }
 
 - (id)handleApiResponse:(id)data {
-
-    return nil;
+//    NSLog(@"%@",data);
+    PWAgency *agency = [PWAgency agencyWithName:data[@"agency"][@"name"]];
+    PWSettings *settings = [[PWSettings alloc] init];
+    settings.agency = agency;
+    return settings;
+//    return nil;
 }
 
 @end
