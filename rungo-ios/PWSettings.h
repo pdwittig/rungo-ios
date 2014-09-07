@@ -8,12 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "PWAgency.h"
-//#import "PWUser.h"
-//#import "PWApiClient.h"
 
-@interface PWSettings : NSObject //<PWApiClientDelegate>
-
-//typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject);
+@interface PWSettings : NSObject
 
 @property(nonatomic, strong) PWAgency *agency;
 @property(nonatomic, strong) NSString *nonDirectionalRoute;
@@ -22,11 +18,5 @@
 
 - (id) initWithAgency:(PWAgency *)agency;
 + (id) settingsWithAgency:(PWAgency *)agency;
-
-//TODO - hookup to backend when settings API is implemented
-//+ (void) fetchSettingsForUserAuthToken:(NSString *)authToken callback:(responseCallback)callback;
-//- (id) handleApiResponse:(id)data;
-//+(id) fetchSettings;
-
 
 @end

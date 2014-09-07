@@ -7,21 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "PWApiClient.h"
 
-
-@interface PWAgency : NSObject //<PWApiClientDelegate>
+@interface PWAgency : NSObject
 
 @property(nonatomic, strong) NSString *name;
-//@property(nonatomic, strong) PWAgency *delegator;
-
-
-//typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject);
 
 - (id) initWithName:(NSString *)name;
 + (id) agencyWithName:(NSString *)name;
-
-//+ (void) fetchAllAgenciesWithCallback:(responseCallback)callback;
-//- (id) handleApiResponse:(id)data;
 
 @end
