@@ -7,7 +7,6 @@
 //
 
 #import "PWUser.h"
-#import <AFNetworking/AFHTTPRequestOperationManager.h>
 
 @implementation PWUser
 
@@ -39,7 +38,7 @@
     NSDictionary *params = @{@"email":email, @"password":password, @"password_confirmation":passwordConfirmation};
     
     PWApiClient *apiClient = [PWApiClient sharedInstance];
-    apiClient.delegate = [[self alloc] init];
+//    apiClient.delegate = [[self alloc] init];
    [apiClient postRequest:@"users/"
                    params:params
                   options:[NSNumber numberWithInt:1]
@@ -52,7 +51,7 @@
     NSDictionary *params = @{@"email":email, @"password":password};
     
     PWApiClient *apiClient = [PWApiClient sharedInstance];
-    apiClient.delegate = [[self alloc] init];
+//    apiClient.delegate = [[self alloc] init];
     [apiClient postRequest:@"sessions/"
                     params:params
                    options:nil

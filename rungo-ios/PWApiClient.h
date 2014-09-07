@@ -18,7 +18,7 @@
 
 typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject);
 
-@property(nonatomic, strong) id <PWApiClientDelegate> delegate;
+@property(nonatomic, weak) id <PWApiClientDelegate> delegate;
 
 //Optional options param
 // - leave nil under normal circumstances

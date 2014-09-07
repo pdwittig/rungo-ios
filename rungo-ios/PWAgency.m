@@ -26,33 +26,34 @@
 }
 
 
-#pragma mark - API Queries
-
-+ (void) fetchAllAgenciesWithCallback:(responseCallback)callback {
-    
-    PWApiClient *apiClient = [PWApiClient sharedInstance];
-    
-    //Kind of ghetto - figure out how to implement better
-    apiClient.delegate = [[self alloc] init];
-    
-    [apiClient getRequest:@"/agencies"
-                   params:nil
-                  options:nil
-                 callback:(responseCallback)callback];
-    
-}
-
-#pragma mark - Parsing
-
-- (id) handleApiResponse:(id)data {
-    NSMutableArray *agencies = [NSMutableArray array];
-    for (NSDictionary *agencyDict in data) {
-        
-        PWAgency *agency = [PWAgency agencyWithName:[agencyDict objectForKey:@"name"]];
-        [agencies addObject:agency];
-        
-    }
-    return agencies;
-}
+//#pragma mark - API Queries
+//
+//+ (void) fetchAllAgenciesWithCallback:(responseCallback)callback {
+//    
+//    PWApiClient *apiClient = [PWApiClient sharedInstance];
+//    
+//    //Kind of ghetto - figure out how to implement better
+//    
+//    apiClient.delegate = [[self alloc] init];
+//    
+//    [apiClient getRequest:@"/agencies"
+//                   params:nil
+//                  options:nil
+//                 callback:(responseCallback)callback];
+//    
+//}
+//
+//#pragma mark - Parsing
+//
+//- (id) handleApiResponse:(id)data {
+//    NSMutableArray *agencies = [NSMutableArray array];
+//    for (NSDictionary *agencyDict in data) {
+//        
+//        PWAgency *agency = [PWAgency agencyWithName:[agencyDict objectForKey:@"name"]];
+//        [agencies addObject:agency];
+//        
+//    }
+//    return agencies;
+//}
 
 @end

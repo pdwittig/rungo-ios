@@ -21,8 +21,10 @@
 {
     [super viewDidLoad];
     
+    [self initDataMgrs];
+    
     //Set current user settings
-    self.settings = [PWSettings fetchSettings];
+    [self loadSettings];
     
     //Fetch the required transit data
     [self fetchTransitData];
@@ -62,11 +64,23 @@
 //    return itemLabels;
 //}
 
+- (void) initDataMgrs {
+    self.agencyMgr = [[PWAgencyMgr alloc] init];
+    self.settingsMgr = [[PWSettingsMgr alloc] init];
+}
+
 - (void) fetchTransitData {
-    [PWAgency fetchAllAgenciesWithCallback:^(BOOL success, NSError *error, id responseObject) {
+    [self.agencyMgr fetchAllAgenciesWithCallback:^(BOOL success, NSError *error, id responseObject) {
         if (success){
             self.agencyList = responseObject;
         }
+    }];
+}
+
+- (void) loadSettings {
+    PWUser *user = [PWUser currentUser];
+    [self.settingsMgr fetchSettingsForUserAuthToken:[user authToken] callback:^(BOOL success, NSError *error, id responseObject) {
+        NSLog(@"loadSettings callback in the controller");
     }];
 }
 

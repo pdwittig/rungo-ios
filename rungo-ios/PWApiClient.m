@@ -11,6 +11,8 @@
 
 @implementation PWApiClient
 
+@synthesize delegate;
+
 #pragma mark - Constructors
 
 - (PWApiClient *) init {
@@ -28,13 +30,14 @@
 
 + (PWApiClient *)sharedInstance
 {
-    static PWApiClient *sharedInstance = nil;
-    static dispatch_once_t oncePredicate;
-    dispatch_once(&oncePredicate, ^{
-        sharedInstance = [[self alloc] init];
-    });
+//    static PWApiClient *sharedInstance = nil;
+//    static dispatch_once_t oncePredicate;
+//    dispatch_once(&oncePredicate, ^{
+//        sharedInstance = [[self alloc] init];
+//    });
     
-    return sharedInstance;
+    
+    return [[super alloc] init];
 }
 
 
@@ -100,6 +103,7 @@
 }
 
 - (id) parseData:(id)data {
+    NSLog(@"%@",self.delegate);
     return [self.delegate handleApiResponse:data];
 }
 
