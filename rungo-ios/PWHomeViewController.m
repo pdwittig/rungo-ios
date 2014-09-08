@@ -20,15 +20,16 @@
 
 {
     [super viewDidLoad];
+    
+    self.userService = [[PWUserService alloc] init];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+    
     [super viewWillAppear:animated];
     
-    //Redirect to login if no auth token exists
-//    id currentUser = [PWUser currentUser];
-    [PWUser setCurrentUserWithEmail:@"pdwittig@gmail.com" authToken:@"f3aee8f68d1eb69bacb4ce7a26d36670"];
-    id currentUser = [PWUser currentUser];
+    id currentUser = [self.userService currentUser];
+    
     if (!currentUser){
         [self performSegueWithIdentifier:@"showLogin" sender:self];
     }

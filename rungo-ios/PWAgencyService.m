@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 PhilWittig. All rights reserved.
 //
 
-#import "PWAgencyMgr.h"
+#import "PWAgencyService.h"
 
-@implementation PWAgencyMgr
+@implementation PWAgencyService
 
 - (id) init {
     
@@ -33,7 +33,7 @@
     
 }
 
-#pragma mark - Parsing
+#pragma mark - Delegate Methods
 
 - (id) handleApiResponse:(id)data {
     

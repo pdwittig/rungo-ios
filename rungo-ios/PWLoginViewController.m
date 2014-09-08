@@ -7,7 +7,7 @@
 //
 
 #import "PWLoginViewController.h"
-#import "PWUser.h"
+
 
 @interface PWLoginViewController ()
 
@@ -15,10 +15,12 @@
 
 @implementation PWLoginViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.userService = [[PWUserService alloc] init];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -28,16 +30,19 @@
 
 
 - (IBAction)login:(id)sender {
+    
     [self validateUserInput];
-    [PWUser loginWithEmail:self.emailField.text password:self.passwordField.text callback:^(BOOL success, NSError *error, id responseObject) {
+    [self.userService loginWithEmail:self.emailField.text password:self.passwordField.text callback:^(BOOL success, NSError *error, id responseObject) {
        
         if (success) {
             
-            NSLog(@"%@", self);
             [self.navigationController popViewControllerAnimated:NO];
+            
         }
         else {
+            
             [self displayError:[[error userInfo] objectForKey:@"error_message"]];
+            
         }
     }];
 }
@@ -54,7 +59,5 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alertView show];
 }
-
-
 
 @end

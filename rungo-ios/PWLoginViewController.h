@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PWUserService.h"
 
 @interface PWLoginViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *emailField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property(weak, nonatomic) IBOutlet UITextField *emailField;
+@property(weak, nonatomic) IBOutlet UITextField *passwordField;
+@property(nonatomic,strong) PWUserService *userService;
 
 - (IBAction)login:(id)sender;
 - (void) displayError:(NSString *)message;

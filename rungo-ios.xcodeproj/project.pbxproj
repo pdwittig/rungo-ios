@@ -12,8 +12,9 @@
 		1630762919B7FC710065E981 /* PWAgency.m in Sources */ = {isa = PBXBuildFile; fileRef = 1630762819B7FC710065E981 /* PWAgency.m */; };
 		1630762F19B8D5320065E981 /* PWItemPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1630762E19B8D5320065E981 /* PWItemPickerViewController.m */; };
 		1630763319BA2B550065E981 /* PWApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1630763219BA2B550065E981 /* PWApiClient.m */; };
-		1630763619BCC31C0065E981 /* PWSettingsMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 1630763519BCC31C0065E981 /* PWSettingsMgr.m */; };
-		1630763919BCC32E0065E981 /* PWAgencyMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 1630763819BCC32E0065E981 /* PWAgencyMgr.m */; };
+		1630763619BCC31C0065E981 /* PWSettingsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1630763519BCC31C0065E981 /* PWSettingsService.m */; };
+		1630763919BCC32E0065E981 /* PWAgencyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1630763819BCC32E0065E981 /* PWAgencyService.m */; };
+		1630763C19BD03ED0065E981 /* PWUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1630763B19BD03ED0065E981 /* PWUserService.m */; };
 		1644CEA119AC4FBC001B5513 /* PWLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1644CEA019AC4FBC001B5513 /* PWLoginViewController.m */; };
 		1644CEA319AC5BAC001B5513 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1644CEA219AC5BAC001B5513 /* Security.framework */; };
 		16666D0019AAF6F9006E44F3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16666CFF19AAF6F9006E44F3 /* MainStoryboard.storyboard */; };
@@ -56,10 +57,12 @@
 		1630762E19B8D5320065E981 /* PWItemPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWItemPickerViewController.m; sourceTree = "<group>"; };
 		1630763119BA2B550065E981 /* PWApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWApiClient.h; sourceTree = "<group>"; };
 		1630763219BA2B550065E981 /* PWApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWApiClient.m; sourceTree = "<group>"; };
-		1630763419BCC31C0065E981 /* PWSettingsMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSettingsMgr.h; sourceTree = "<group>"; };
-		1630763519BCC31C0065E981 /* PWSettingsMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSettingsMgr.m; sourceTree = "<group>"; };
-		1630763719BCC32E0065E981 /* PWAgencyMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWAgencyMgr.h; sourceTree = "<group>"; };
-		1630763819BCC32E0065E981 /* PWAgencyMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWAgencyMgr.m; sourceTree = "<group>"; };
+		1630763419BCC31C0065E981 /* PWSettingsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSettingsService.h; sourceTree = "<group>"; };
+		1630763519BCC31C0065E981 /* PWSettingsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSettingsService.m; sourceTree = "<group>"; };
+		1630763719BCC32E0065E981 /* PWAgencyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWAgencyService.h; sourceTree = "<group>"; };
+		1630763819BCC32E0065E981 /* PWAgencyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWAgencyService.m; sourceTree = "<group>"; };
+		1630763A19BD03ED0065E981 /* PWUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWUserService.h; sourceTree = "<group>"; };
+		1630763B19BD03ED0065E981 /* PWUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWUserService.m; sourceTree = "<group>"; };
 		1644CE9F19AC4FBC001B5513 /* PWLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWLoginViewController.h; sourceTree = "<group>"; };
 		1644CEA019AC4FBC001B5513 /* PWLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWLoginViewController.m; sourceTree = "<group>"; };
 		1644CEA219AC5BAC001B5513 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -116,11 +119,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1630763019BA2AFF0065E981 /* Services */ = {
+		1630763019BA2AFF0065E981 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				1630763119BA2B550065E981 /* PWApiClient.h */,
 				1630763219BA2B550065E981 /* PWApiClient.m */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		1630763D19BE3FD00065E981 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1630763A19BD03ED0065E981 /* PWUserService.h */,
+				1630763B19BD03ED0065E981 /* PWUserService.m */,
+				1630763419BCC31C0065E981 /* PWSettingsService.h */,
+				1630763519BCC31C0065E981 /* PWSettingsService.m */,
+				1630763719BCC32E0065E981 /* PWAgencyService.h */,
+				1630763819BCC32E0065E981 /* PWAgencyService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -178,11 +194,11 @@
 		166A02CE19AAF69200D29108 /* rungo-ios */ = {
 			isa = PBXGroup;
 			children = (
-				1630763019BA2AFF0065E981 /* Services */,
+				16666CFF19AAF6F9006E44F3 /* MainStoryboard.storyboard */,
+				1630763019BA2AFF0065E981 /* Networking */,
+				1630763D19BE3FD00065E981 /* Services */,
 				16BF21AD19AAFE070078964A /* Models */,
 				16666D0119AAF933006E44F3 /* Controllers */,
-				16666CFF19AAF6F9006E44F3 /* MainStoryboard.storyboard */,
-				166A02DA19AAF69200D29108 /* Images.xcassets */,
 				166A02CF19AAF69200D29108 /* Supporting Files */,
 			);
 			path = "rungo-ios";
@@ -191,6 +207,7 @@
 		166A02CF19AAF69200D29108 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				166A02DA19AAF69200D29108 /* Images.xcassets */,
 				166A02D719AAF69200D29108 /* PWAppDelegate.h */,
 				166A02D819AAF69200D29108 /* PWAppDelegate.m */,
 				166A02D019AAF69200D29108 /* rungo-ios-Info.plist */,
@@ -224,12 +241,8 @@
 			children = (
 				16BF21AE19AAFE370078964A /* PWUser.h */,
 				16BF21AF19AAFE370078964A /* PWUser.m */,
-				1630763419BCC31C0065E981 /* PWSettingsMgr.h */,
-				1630763519BCC31C0065E981 /* PWSettingsMgr.m */,
 				1630762419B7B8660065E981 /* PWSettings.h */,
 				1630762519B7B8660065E981 /* PWSettings.m */,
-				1630763719BCC32E0065E981 /* PWAgencyMgr.h */,
-				1630763819BCC32E0065E981 /* PWAgencyMgr.m */,
 				1630762719B7FC710065E981 /* PWAgency.h */,
 				1630762819B7FC710065E981 /* PWAgency.m */,
 			);
@@ -368,9 +381,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1630763619BCC31C0065E981 /* PWSettingsMgr.m in Sources */,
+				1630763619BCC31C0065E981 /* PWSettingsService.m in Sources */,
 				1630762F19B8D5320065E981 /* PWItemPickerViewController.m in Sources */,
-				1630763919BCC32E0065E981 /* PWAgencyMgr.m in Sources */,
+				1630763919BCC32E0065E981 /* PWAgencyService.m in Sources */,
 				1630762319B7B55B0065E981 /* PWSettingsViewController.m in Sources */,
 				166A02D519AAF69200D29108 /* main.m in Sources */,
 				1630763319BA2B550065E981 /* PWApiClient.m in Sources */,
@@ -378,6 +391,7 @@
 				16666D0419AAF988006E44F3 /* PWHomeViewController.m in Sources */,
 				166A02D919AAF69200D29108 /* PWAppDelegate.m in Sources */,
 				16BF21AC19AAFCA00078964A /* PWSignupViewController.m in Sources */,
+				1630763C19BD03ED0065E981 /* PWUserService.m in Sources */,
 				16BF21B019AAFE370078964A /* PWUser.m in Sources */,
 				1630762619B7B8660065E981 /* PWSettings.m in Sources */,
 				1630762919B7FC710065E981 /* PWAgency.m in Sources */,

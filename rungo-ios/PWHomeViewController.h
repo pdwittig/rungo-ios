@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PWUserService.h"
 
 @interface PWHomeViewController : UIViewController
+
+@property(nonatomic, strong) PWUserService *userService;
 
 @end

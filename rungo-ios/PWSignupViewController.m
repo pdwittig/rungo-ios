@@ -7,7 +7,7 @@
 //
 
 #import "PWSignupViewController.h"
-#import "PWUser.h"
+
 
 @interface PWSignupViewController ()
 
@@ -19,7 +19,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.userService = [[PWUserService alloc] init];
+    
 }
 
 
@@ -27,12 +29,16 @@
 
 - (IBAction)signup:(id)sender {
     [self validateUserInput];
-    [PWUser createUserWithEmail:self.emailField.text password:self.passwordField.text passwordConfirmation:self.passwordConfirmationField.text callback:^(BOOL success, NSError *error, id responseObject){
+    [self.userService createUserWithEmail:self.emailField.text password:self.passwordField.text passwordConfirmation:self.passwordConfirmationField.text callback:^(BOOL success, NSError *error, id responseObject){
         if (success){
+            
             [self.navigationController popViewControllerAnimated:YES];
+            
         }
         else {
+            
             [self displayError:[[error userInfo] objectForKey:@"error_message"]];
+            
         }
     }];
  

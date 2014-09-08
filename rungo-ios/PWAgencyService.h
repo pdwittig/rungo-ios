@@ -11,7 +11,7 @@
 #import "PWApiClient.h"
 
 
-@interface PWAgencyMgr : NSObject <PWApiClientDelegate>
+@interface PWAgencyService : NSObject <PWApiClientDelegate>
 
 
 typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject);

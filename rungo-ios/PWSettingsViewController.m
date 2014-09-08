@@ -21,7 +21,7 @@
 {
     [super viewDidLoad];
     
-    [self initDataMgrs];
+    [self initDataServices];
     [self loadSettings];
     [self loadTransitData];
     
@@ -31,7 +31,6 @@
     [super viewWillAppear:animated];
     [self updateLabels];
 }
-
 
 
 #pragma mark - Navigation
@@ -51,13 +50,16 @@
 
 #pragma mark - Helpers
 
-- (void) initDataMgrs {
-    self.agencyMgr = [[PWAgencyMgr alloc] init];
-    self.settingsMgr = [[PWSettingsMgr alloc] init];
+- (void) initDataServices {
+    
+    self.agencyService = [[PWAgencyService alloc] init];
+    self.settingsService = [[PWSettingsService alloc] init];
+    self.userService = [[PWUserService alloc] init];
+    
 }
 
 - (void) loadTransitData {
-    [self.agencyMgr fetchAllAgenciesWithCallback:^(BOOL success, NSError *error, id responseObject) {
+    [self.agencyService fetchAllAgenciesWithCallback:^(BOOL success, NSError *error, id responseObject) {
         if (success){
             self.agencyList = responseObject;
         }
@@ -65,9 +67,10 @@
 }
 
 - (void) loadSettings {
+    
     //TODO - How should I handle errors here?
-    PWUser *user = [PWUser currentUser];
-    [self.settingsMgr fetchSettingsForUserAuthToken:[user authToken] callback:^(BOOL success, NSError *error, id responseObject) {
+    PWUser *user = [self.userService currentUser];
+    [self.settingsService fetchSettingsForUserAuthToken:[user authToken] callback:^(BOOL success, NSError *error, id responseObject) {
         self.settings = responseObject;
     }];
 }

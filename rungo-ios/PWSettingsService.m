@@ -6,23 +6,28 @@
 //  Copyright (c) 2014 PhilWittig. All rights reserved.
 //
 
-#import "PWSettingsMgr.h"
+#import "PWSettingsService.h"
 
-@implementation PWSettingsMgr
+@implementation PWSettingsService
 
 - (id) init {
     
     self = [super init];
     if (self) {
         self.apiClient = [[PWApiClient alloc] init];
+        self.userService = [[PWUserService alloc] init];
     }
     
     return self;
 }
 
-- (void) fetchSettingsForUserAuthToken:(NSString *)authToken callback:(responseCallback)callback {
+#pragma mark - API Queries
 
-    NSDictionary *params = @{@"auth_token":[[PWUser currentUser] authToken]};
+- (void) fetchSettingsForUserAuthToken:(NSString *)authToken callback:(responseCallback)callback {
+    
+    NSLog(@"%@", [self.userService currentUser]);
+    
+    NSDictionary *params = @{@"auth_token":[[self.userService currentUser] authToken]};
 
     self.apiClient.delegate = self;
 
@@ -33,13 +38,15 @@
 
 }
 
+#pragma mark - Delegate Methods
+
 - (id)handleApiResponse:(id)data {
-//    NSLog(@"%@",data);
+
     PWAgency *agency = [PWAgency agencyWithName:data[@"agency"][@"name"]];
     PWSettings *settings = [[PWSettings alloc] init];
     settings.agency = agency;
     return settings;
-//    return nil;
+
 }
 
 @end

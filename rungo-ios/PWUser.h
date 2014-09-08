@@ -7,23 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PWApiClient.h"
 
-@interface PWUser : NSObject <PWApiClientDelegate>
-
-typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject);
+@interface PWUser : NSObject //<PWApiClientDelegate>
 
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *authToken;
 
 - (id) initWithEmail:(NSString *)email authToken:(NSString *)authToken;
 + (id) userWithEmail:(NSString *)email authToken:(NSString *)authToken;
-+ (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation callback:(responseCallback)callback;
-+ (void) loginWithEmail:(NSString *)email password:(NSString *)password callback:(responseCallback)calllback;
-
-+ (id) currentUser;
-+ (void) setCurrentUserWithEmail:(NSString *)email authToken:(NSString *)authToken;
-- (id) handleApiResponse:(id)data;
-
 
 @end

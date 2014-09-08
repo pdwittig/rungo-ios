@@ -7,15 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PWSettings.h"
-#import "PWUser.h"
 #import "PWApiClient.h"
+#import "PWSettings.h"
+#import "PWUserService.h"
 
-@interface PWSettingsMgr : NSObject <PWApiClientDelegate>
+@interface PWSettingsService : NSObject <PWApiClientDelegate>
 
 typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject);
 
 @property(nonatomic, strong) PWApiClient *apiClient;
+@property(nonatomic, strong) PWUserService *userService;
 
 - (void) fetchSettingsForUserAuthToken:(NSString *)authToken callback:(responseCallback)callback;
 - (id) handleApiResponse:(id)data;
