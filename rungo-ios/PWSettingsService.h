@@ -10,8 +10,9 @@
 #import "PWApiClient.h"
 #import "PWSettings.h"
 #import "PWUserService.h"
+#import "PWModelServiceDelegate.h"
 
-@interface PWSettingsService : NSObject <PWApiClientDelegate>
+@interface PWSettingsService : NSObject <PWApiClientDelegate, PWModelServiceDelegate>
 
 typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject);
 
@@ -20,6 +21,8 @@ typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject
 
 - (void) fetchSettingsForUserAuthToken:(NSString *)authToken callback:(responseCallback)callback;
 - (id) handleApiResponse:(id)data;
+- (id) settingsWithServiceDelegate;
+- (void) save:(id)object callback:(responseCallback)callback;
 
 
 @end

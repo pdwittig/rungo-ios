@@ -25,6 +25,8 @@ typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject
 // - pass 1 if the response requires no model proccesing (via delegate calls)
 - (void) getRequest:(NSString *)url params:(NSDictionary *)params options:(NSNumber *)options callback:(responseCallback)callback;
 - (void) postRequest:(NSString *)url params:(NSDictionary *)params options:(NSNumber *)options callback:(responseCallback)callback;
+- (void) putRequest:(NSString *)url params:(NSDictionary *)params options:(NSNumber *)options callback:(responseCallback)callback;
+
 
 
 - (PWApiClient *) init;

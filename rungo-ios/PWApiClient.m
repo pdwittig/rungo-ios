@@ -73,6 +73,21 @@
     }];
 }
 
+- (void) putRequest:(NSString *)url params:(NSDictionary *)params options:(NSNumber *)options callback:(responseCallback)callback {
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager PUT:[self endpointUrlWithResource:url] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [self handleApiSuccess:responseObject options:options callback:callback];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        [self handleApiError:operation callback:callback];
+        
+    }];
+}
+
 
 # pragma mark - Helpers
 

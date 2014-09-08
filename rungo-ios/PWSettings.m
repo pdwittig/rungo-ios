@@ -24,4 +24,10 @@
     return [[self alloc] initWithAgency:agency];
 }
 
+#pragma mark - Delegate Methods
+
+- (void) saveWithcallback:(responseCallback)callback {
+    [self.delegate save:self callback:callback];
+}
+
 @end

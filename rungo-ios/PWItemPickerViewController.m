@@ -15,8 +15,7 @@
 @implementation PWItemPickerViewController
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 }
 

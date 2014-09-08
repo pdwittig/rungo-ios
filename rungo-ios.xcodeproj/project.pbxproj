@@ -63,6 +63,7 @@
 		1630763819BCC32E0065E981 /* PWAgencyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWAgencyService.m; sourceTree = "<group>"; };
 		1630763A19BD03ED0065E981 /* PWUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWUserService.h; sourceTree = "<group>"; };
 		1630763B19BD03ED0065E981 /* PWUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWUserService.m; sourceTree = "<group>"; };
+		1630763E19BE580D0065E981 /* PWModelServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PWModelServiceDelegate.h; sourceTree = "<group>"; };
 		1644CE9F19AC4FBC001B5513 /* PWLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWLoginViewController.h; sourceTree = "<group>"; };
 		1644CEA019AC4FBC001B5513 /* PWLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWLoginViewController.m; sourceTree = "<group>"; };
 		1644CEA219AC5BAC001B5513 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -137,6 +138,7 @@
 				1630763519BCC31C0065E981 /* PWSettingsService.m */,
 				1630763719BCC32E0065E981 /* PWAgencyService.h */,
 				1630763819BCC32E0065E981 /* PWAgencyService.m */,
+				1630763E19BE580D0065E981 /* PWModelServiceDelegate.h */,
 			);
 			name = Services;
 			sourceTree = "<group>";

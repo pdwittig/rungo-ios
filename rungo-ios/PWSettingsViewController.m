@@ -10,6 +10,7 @@
 #import "PWItemPickerViewController.h"
 #import "PWAgency.h"
 #import "PWSettings.h"
+#import "PWModelServiceDelegate.h"
 
 @interface PWSettingsViewController ()
 
@@ -17,8 +18,8 @@
 
 @implementation PWSettingsViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     [self initDataServices];
@@ -28,16 +29,29 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
     [super viewWillAppear:animated];
     [self updateLabels];
+    
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if([self.navigationController.viewControllers indexOfObject:self] == NSNotFound){
+        [self.settings saveWithcallback:^(BOOL success, NSError *error, id responseObject) {
+          //HANDLE Errors
+            
+        }];
+    }
 }
 
 
 #pragma mark - Navigation
 
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
     PWItemPickerViewController *itemPickerViewController = (PWItemPickerViewController *)segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"showAgencyItemPicker"]) {
         
@@ -59,6 +73,7 @@
 }
 
 - (void) loadTransitData {
+    
     [self.agencyService fetchAllAgenciesWithCallback:^(BOOL success, NSError *error, id responseObject) {
         if (success){
             self.agencyList = responseObject;
@@ -66,17 +81,31 @@
     }];
 }
 
+- (void) loadAgencies {
+    
+}
+
 - (void) loadSettings {
     
-    //TODO - How should I handle errors here?
     PWUser *user = [self.userService currentUser];
     [self.settingsService fetchSettingsForUserAuthToken:[user authToken] callback:^(BOOL success, NSError *error, id responseObject) {
-        self.settings = responseObject;
+        if (success) {
+            
+            self.settings = responseObject;
+            
+        }
+        else {
+            
+            self.settings = [self.settingsService settingsWithServiceDelegate];
+            
+        }
     }];
 }
 
 -(void) updateLabels {
+    
     self.agencyLabel.text = self.settings.agency.name;
+    
 }
 
 #pragma mark - Delegate Methods

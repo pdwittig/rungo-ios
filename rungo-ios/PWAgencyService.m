@@ -26,7 +26,7 @@
     
     self.apiClient.delegate = self;
     
-    [self.apiClient getRequest:@"/agencies"
+    [self.apiClient getRequest:@"agencies/"
                    params:nil
                   options:nil
                  callback:(responseCallback)callback];
