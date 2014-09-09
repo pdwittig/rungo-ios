@@ -72,6 +72,13 @@
 
 - (void) fetchAllDirectionalRoutesForNonDirectionalRoute:(NSString *)nonDirectionalRotueName callback:(responseCallback)callback {
     
+    NSDictionary *params = @{@"non_directional_route_name":nonDirectionalRotueName};
+    
+    [self.apiClient getRequest:@"directional_routes/"
+                        params:params
+                         klass:[PWDirectionalRoute class]
+                       options:nil
+                      callback:callback];
 }
 
 #pragma mark - Parsing
