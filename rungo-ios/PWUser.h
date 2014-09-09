@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PWUser : NSObject //<PWApiClientDelegate>
+@interface PWUser : NSObject
 
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *authToken;

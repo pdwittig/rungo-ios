@@ -36,27 +36,66 @@
 
 - (void) fetchSettingsForUserAuthToken:(NSString *)authToken callback:(responseCallback)callback {
     
-    NSLog(@"%@", [self.userService currentUser]);
-    
     NSDictionary *params = @{@"auth_token":[[self.userService currentUser] authToken]};
 
     [self.apiClient getRequest:@"settings/"
                    params:params
+                    klass:[PWSettings class]
                   options:nil
                  callback:callback];
 
 }
 
+- (void) fetchAllAgenciesWithCallback:(responseCallback)callback {
+    
+    self.apiClient.delegate = self;
+    
+    [self.apiClient getRequest:@"agencies/"
+                        params:nil
+                         klass:[PWAgency class]
+                       options:nil
+                      callback:(responseCallback)callback];
+    
+}
 
-#pragma mark - Delegate Methods
+#pragma mark - Parsing
 
-- (id)handleApiResponse:(id)data {
+- (id) parseAgencies:(id)data {
+    
+    NSMutableArray *agencies = [NSMutableArray array];
+    for (NSDictionary *agencyDict in data) {
+        
+        PWAgency *agency = [PWAgency agencyWithName:[agencyDict objectForKey:@"name"]];
+        [agencies addObject:agency];
+        
+    }
+    return agencies;
+}
 
+- (id) parseSettings:(id)data {
+    
     PWAgency *agency = [PWAgency agencyWithName:data[@"agency"][@"name"]];
     PWSettings *settings = [self settingsWithServiceDelegate];
     settings.agency = agency;
     return settings;
+    
+}
 
+
+#pragma mark - Delegate Methods
+
+- (id)handleApiResponse:(id)data klass:(Class)klass {
+    
+    id objects;
+    
+    if (klass == [PWSettings class]){
+        objects = [self parseSettings:data];
+    }
+    else if (klass == [PWAgency class]){
+        objects = [self parseAgencies: data];
+    }
+    return objects;
+        
 }
 
 - (void) save:(id)object callback:(responseCallback)callback {
@@ -66,6 +105,7 @@
     
     [self.apiClient putRequest:@"settings/"
                         params:params
+                         klass:[PWSettings class]
                        options:nil
                       callback:callback];
 }

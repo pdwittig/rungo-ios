@@ -20,7 +20,9 @@ typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject
 @property(nonatomic, strong) PWUserService *userService;
 
 - (void) fetchSettingsForUserAuthToken:(NSString *)authToken callback:(responseCallback)callback;
-- (id) handleApiResponse:(id)data;
+- (void) fetchAllAgenciesWithCallback:(responseCallback)callback;
+
+- (id) handleApiResponse:(id)data klass:(Class)klass;
 - (id) settingsWithServiceDelegate;
 - (void) save:(id)object callback:(responseCallback)callback;
 

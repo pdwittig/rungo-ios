@@ -22,7 +22,7 @@ typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject
 
 - (id) currentUser;
 - (void) setCurrentUserWithEmail:(NSString *)email authToken:(NSString *)authToken;
-- (id) handleApiResponse:(id)data;
+- (id) handleApiResponse:(id)data klass:(Class)klass;
 
 
 

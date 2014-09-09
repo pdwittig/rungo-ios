@@ -43,13 +43,13 @@
 
 # pragma mark  - API Calls
 
-- (void) getRequest:(NSString *)url params:(NSDictionary *)params options:(NSNumber *)options callback:(responseCallback)callback {
+- (void) getRequest:(NSString *)url params:(NSDictionary *)params klass:(Class)klass options:(NSNumber *)options callback:(responseCallback)callback {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager GET:[self endpointUrlWithResource:url] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        [self handleApiSuccess:responseObject options:options callback:callback];
+        [self handleApiSuccess:responseObject klass:klass options:options callback:callback];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -58,13 +58,13 @@
     }];
 }
 
-- (void) postRequest:(NSString *)url params:(NSDictionary *)params options:(NSNumber *)options callback:(responseCallback)callback {
+- (void) postRequest:(NSString *)url params:(NSDictionary *)params klass:(Class)klass options:(NSNumber *)options callback:(responseCallback)callback {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager POST:[self endpointUrlWithResource:url] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        [self handleApiSuccess:responseObject options:options callback:callback];
+        [self handleApiSuccess:responseObject klass:klass options:options callback:callback];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -73,13 +73,13 @@
     }];
 }
 
-- (void) putRequest:(NSString *)url params:(NSDictionary *)params options:(NSNumber *)options callback:(responseCallback)callback {
+- (void) putRequest:(NSString *)url params:(NSDictionary *)params klass:(Class)klass options:(NSNumber *)options callback:(responseCallback)callback {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager PUT:[self endpointUrlWithResource:url] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        [self handleApiSuccess:responseObject options:options callback:callback];
+        [self handleApiSuccess:responseObject klass:klass options:options callback:callback];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -91,7 +91,7 @@
 
 # pragma mark - Helpers
 
-- (void) handleApiSuccess:(id)responseObject options:(NSNumber *)options callback:(responseCallback)callback {
+- (void) handleApiSuccess:(id)responseObject klass:(Class)klass options:(NSNumber *)options callback:(responseCallback)callback {
     
     id response;
     
@@ -99,7 +99,7 @@
         response = responseObject;
     }
     else {
-        response = [self  parseData:responseObject];
+        response = [self  parseData:responseObject klass:klass];
     }
 
     callback(YES, nil, response);
@@ -114,12 +114,15 @@
 }
 
 - (NSString *) endpointUrlWithResource:(NSString *)resource {
+    
     return [@"http://localhost:3000/api/" stringByAppendingString:resource];
+    
 }
 
-- (id) parseData:(id)data {
-    NSLog(@"%@",self.delegate);
-    return [self.delegate handleApiResponse:data];
+- (id) parseData:(id)data klass:(Class)klass {
+    
+    return [self.delegate handleApiResponse:data klass:klass];
+    
 }
 
 - (NSDictionary *) parseError:(id)object {

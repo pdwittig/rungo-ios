@@ -30,6 +30,7 @@
     
     [self.apiClient postRequest:@"users/"
                     params:params
+                     klass:[PWUser class]
                    options:[NSNumber numberWithInt:1]
                   callback:callback];
     
@@ -42,6 +43,7 @@
     self.apiClient.delegate = self;
     [self.apiClient postRequest:@"sessions/"
                     params:params
+                     klass:[PWUser class]
                    options:nil
                   callback:callback];
     
@@ -70,7 +72,7 @@
 
 #pragma mark - Delegate Methods
 
-- (id) handleApiResponse:(id)data {
+- (id) handleApiResponse:(id)data klass:(Class)klass {
     
     [self setCurrentUserWithEmail:data[@"email"] authToken:data[@"auth_token"][@"access_token"]];
     

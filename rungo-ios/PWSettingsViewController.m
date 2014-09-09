@@ -40,7 +40,7 @@
     
     if([self.navigationController.viewControllers indexOfObject:self] == NSNotFound){
         [self.settings saveWithcallback:^(BOOL success, NSError *error, id responseObject) {
-          //HANDLE Errors
+          //TODO - Errors
             
         }];
     }
@@ -66,7 +66,6 @@
 
 - (void) initDataServices {
     
-    self.agencyService = [[PWAgencyService alloc] init];
     self.settingsService = [[PWSettingsService alloc] init];
     self.userService = [[PWUserService alloc] init];
     
@@ -74,7 +73,7 @@
 
 - (void) loadTransitData {
     
-    [self.agencyService fetchAllAgenciesWithCallback:^(BOOL success, NSError *error, id responseObject) {
+    [self.settingsService fetchAllAgenciesWithCallback:^(BOOL success, NSError *error, id responseObject) {
         if (success){
             self.agencyList = responseObject;
         }
