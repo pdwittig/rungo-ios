@@ -25,6 +25,9 @@
     [self initDataServices];
     [self loadSettings];
     
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    self.tableView.tableFooterView = view;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -45,7 +48,6 @@
     }
 }
 
-
 #pragma mark - Navigation
 
 
@@ -56,18 +58,21 @@
         
         itemPickerViewController.pickerItems = self.agencyCollection;
         itemPickerViewController.pickerItemsKlass = [PWAgency class];
+        itemPickerViewController.selectedItem = self.settings.agency;
         itemPickerViewController.delegate = self;
     }
     else if ([segue.identifier isEqualToString:@"showRouteItemPicker"]) {
         
         itemPickerViewController.pickerItems = self.nonDirectionalRouteCollection;
         itemPickerViewController.pickerItemsKlass = [PWNonDirectionalRoute class];
+        itemPickerViewController.selectedItem = self.settings.nonDirectionalRoute;
         itemPickerViewController.delegate = self;
     }
     else if ([segue.identifier isEqualToString:@"showDirectionItemPicker"]) {
         
         itemPickerViewController.pickerItems = self.directionalRouteCollection;
         itemPickerViewController.pickerItemsKlass = [PWDirectionalRoute class];
+        itemPickerViewController.selectedItem = self.settings.directionalRoute;
         itemPickerViewController.delegate = self;
     }
 }

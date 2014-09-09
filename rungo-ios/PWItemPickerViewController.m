@@ -41,6 +41,10 @@
     
     id item = [self.pickerItems objectAtIndex:indexPath.row];
     
+    if ([[item name] isEqualToString:[self.selectedItem name]]) {
+        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }
+    
     cell.textLabel.text = [item name];
     
     return cell;

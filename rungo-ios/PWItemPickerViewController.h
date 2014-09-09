@@ -19,6 +19,7 @@
 
 
 @property(nonatomic, strong) NSArray *pickerItems;
+@property(nonatomic, strong) id selectedItem;
 @property(nonatomic, strong) Class pickerItemsKlass;
 @property(nonatomic, weak) id <ItemPickerViewControllerDelegate> delegate;
 
