@@ -27,9 +27,11 @@
 #pragma mark  - Settings Constructors
 
 - (id) settingsWithServiceDelegate {
+    
     PWSettings *settings = [[PWSettings alloc] init];
     settings.delegate = self;
     return settings;
+    
 }
 
 #pragma mark - API Queries
@@ -48,13 +50,27 @@
 
 - (void) fetchAllAgenciesWithCallback:(responseCallback)callback {
     
-    self.apiClient.delegate = self;
-    
     [self.apiClient getRequest:@"agencies/"
                         params:nil
                          klass:[PWAgency class]
                        options:nil
                       callback:(responseCallback)callback];
+    
+}
+
+- (void) fetchAllNonDirectionalRoutesforAgency:(NSString *)agencyName callback:(responseCallback)callback {
+    
+    NSDictionary *params = @{@"agency_name":agencyName};
+    
+    [self.apiClient getRequest:@"non_directional_routes/"
+                        params:params
+                         klass:[PWNonDirectionalRoute class]
+                       options:nil
+                      callback:callback];
+    
+}
+
+- (void) fetchAllDirectionalRoutesForNonDirectionalRoute:(NSString *)nonDirectionalRotueName callback:(responseCallback)callback {
     
 }
 
@@ -81,19 +97,37 @@
     
 }
 
+- (id) parseRoutes:(id)data klass:(Class)klass {
+    
+    NSMutableArray *routes = [NSMutableArray array];
+    
+    for (id routeData in data) {
+
+        [routes addObject:[klass routeWithName:[routeData objectForKey:@"name"] code:[routeData objectForKey:@"code"]]];
+        
+    }
+    
+    return routes;
+}
+
+
 
 #pragma mark - Delegate Methods
 
-- (id)handleApiResponse:(id)data klass:(Class)klass {
+- (id) handleApiResponse:(id)data klass:(Class)klass {
     
     id objects;
     
-    if (klass == [PWSettings class]){
+    if (klass == [PWSettings class]) {
         objects = [self parseSettings:data];
     }
-    else if (klass == [PWAgency class]){
+    else if (klass == [PWAgency class]) {
         objects = [self parseAgencies: data];
     }
+    else if (klass == [PWNonDirectionalRoute class] || klass == [PWDirectionalRoute class]) {
+        objects = [self parseRoutes:data klass:klass];
+    }
+
     return objects;
         
 }

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "PWApiClient.h"
 #import "PWSettings.h"
+#import "PWNonDirectionalRoute.h"
+#import "PWDirectionalRoute.h"
 #import "PWUserService.h"
 #import "PWModelServiceDelegate.h"
 
@@ -21,6 +23,8 @@ typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject
 
 - (void) fetchSettingsForUserAuthToken:(NSString *)authToken callback:(responseCallback)callback;
 - (void) fetchAllAgenciesWithCallback:(responseCallback)callback;
+- (void) fetchAllNonDirectionalRoutesforAgency:(NSString *)agencyName callback:(responseCallback)callback;
+- (void) fetchAllDirectionalRoutesForNonDirectionalRoute:(NSString *)nonDirectionalRotueName callback:(responseCallback)callback;
 
 - (id) handleApiResponse:(id)data klass:(Class)klass;
 - (id) settingsWithServiceDelegate;
