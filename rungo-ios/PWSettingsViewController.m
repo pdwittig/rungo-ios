@@ -76,6 +76,7 @@
     [self.settingsService fetchAllAgenciesWithCallback:^(BOOL success, NSError *error, id responseObject) {
         if (success){
             self.agencyList = responseObject;
+            [self updateLabels];
         }
     }];
 }
