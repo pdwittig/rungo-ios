@@ -24,7 +24,6 @@
     
     [self initDataServices];
     [self loadSettings];
-    [self loadTransitData];
     
 }
 
@@ -55,11 +54,22 @@
     PWItemPickerViewController *itemPickerViewController = (PWItemPickerViewController *)segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"showAgencyItemPicker"]) {
         
-        itemPickerViewController.pickerItems = self.agencyList;
+        itemPickerViewController.pickerItems = self.agencyCollection;
         itemPickerViewController.pickerItemsKlass = [PWAgency class];
         itemPickerViewController.delegate = self;
     }
- 
+    else if ([segue.identifier isEqualToString:@"showRouteItemPicker"]) {
+        
+        itemPickerViewController.pickerItems = self.nonDirectionalRouteCollection;
+        itemPickerViewController.pickerItemsKlass = [PWNonDirectionalRoute class];
+        itemPickerViewController.delegate = self;
+    }
+    else if ([segue.identifier isEqualToString:@"showDirectionItemPicker"]) {
+        
+        itemPickerViewController.pickerItems = self.directionalRouteCollection;
+        itemPickerViewController.pickerItemsKlass = [PWDirectionalRoute class];
+        itemPickerViewController.delegate = self;
+    }
 }
 
 #pragma mark - Helpers
@@ -73,16 +83,50 @@
 
 - (void) loadTransitData {
     
-    [self.settingsService fetchAllAgenciesWithCallback:^(BOOL success, NSError *error, id responseObject) {
-        if (success){
-            self.agencyList = responseObject;
-            [self updateLabels];
-        }
-    }];
+    [self loadAgencies];
+    
+    if (self.settings.agency) [self loadNonDirectionalRoutes];
+    
+    if (self.settings.nonDirectionalRoute) [self loadDirectionalRoutes];
+
 }
 
 - (void) loadAgencies {
     
+    if (!self.agencyCollection) {
+        [self.settingsService fetchAllAgenciesWithCallback:^(BOOL success, NSError *error, id responseObject) {
+            if (success){
+                
+                self.agencyCollection = responseObject;
+                
+            }
+        }];
+    }
+}
+
+- (void) loadNonDirectionalRoutes {
+    
+    [self.settingsService fetchAllNonDirectionalRoutesforAgency:self.settings.agency.name callback:^(BOOL success, NSError *error, id responseObject) {
+        
+        if (success){
+            
+            self.nonDirectionalRouteCollection = responseObject;
+            
+        }
+    }];
+}
+
+- (void) loadDirectionalRoutes {
+    
+    [self.settingsService fetchAllDirectionalRoutesForNonDirectionalRoute:self.settings.nonDirectionalRoute.name callback:^(BOOL success, NSError *error, id responseObject) {
+    
+        if (success) {
+            
+            self.directionalRouteCollection = responseObject;
+            
+        }
+        
+    }];
 }
 
 - (void) loadSettings {
@@ -92,7 +136,8 @@
         if (success) {
             
             self.settings = responseObject;
-            
+            [self updateLabels];
+            [self loadTransitData];
         }
         else {
             
@@ -104,16 +149,27 @@
 
 -(void) updateLabels {
     
-    self.agencyLabel.text = self.settings.agency.name;
     
+    if (self.settings.agency) self.agencyLabel.text = self.settings.agency.name;
+    if (self.settings.nonDirectionalRoute) self.routeLabel.text = self.settings.nonDirectionalRoute.name;
+    if (self.settings.directionalRoute) self.directionLabel.text = self.settings.directionalRoute.name;
 }
 
 #pragma mark - Delegate Methods
 
 - (void) didSelectItem:(id)item klass:(Class)klass {
+  
     if (klass == [PWAgency class]) {
         self.settings.agency = item;
     }
+    else if (klass == [PWNonDirectionalRoute class]){
+        self.settings.nonDirectionalRoute = item;
+    }
+    else if (klass == [PWDirectionalRoute class]){
+        self.settings.directionalRoute = item;
+    }
+    
+    [self loadTransitData];
 }
 
 @end

@@ -30,6 +30,6 @@ typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject
 
 
 - (PWApiClient *) init;
-+ (PWApiClient *) sharedInstance;
++ (PWApiClient *) apiClient;
 
 @end

@@ -14,7 +14,12 @@
 @interface PWSettingsViewController : UITableViewController <ItemPickerViewControllerDelegate>
 
 @property(weak, nonatomic) IBOutlet UILabel *agencyLabel;
-@property(nonatomic, strong) NSArray *agencyList;
+@property (weak, nonatomic) IBOutlet UILabel *routeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *directionLabel;
+
+@property(nonatomic, strong) NSArray *agencyCollection;
+@property(nonatomic, strong) NSArray *nonDirectionalRouteCollection;
+@property(nonatomic, strong) NSArray *directionalRouteCollection;
 
 @property(nonatomic, strong) PWUserService *userService;
 

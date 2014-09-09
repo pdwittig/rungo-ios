@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "PWAgency.h"
+#import "PWNonDirectionalRoute.h"
+#import "PWDirectionalRoute.h"
 #import "PWModelServiceDelegate.h"
 
 @interface PWSettings : NSObject
 
 @property(nonatomic, strong) PWAgency *agency;
-@property(nonatomic, strong) NSString *nonDirectionalRoute;
-@property(nonatomic, strong) NSString *directionalRoute;
+@property(nonatomic, strong) PWNonDirectionalRoute *nonDirectionalRoute;
+@property(nonatomic, strong) PWDirectionalRoute *directionalRoute;
 @property(nonatomic, strong) NSDate *departureTime;
 @property(nonatomic, weak) id <PWModelServiceDelegate> delegate;
 

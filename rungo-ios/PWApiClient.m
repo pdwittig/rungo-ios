@@ -26,16 +26,8 @@
     return self;
 }
 
-#pragma mark - Singleton methods
-
-+ (PWApiClient *)sharedInstance
++ (PWApiClient *)apiClient
 {
-//    static PWApiClient *sharedInstance = nil;
-//    static dispatch_once_t oncePredicate;
-//    dispatch_once(&oncePredicate, ^{
-//        sharedInstance = [[self alloc] init];
-//    });
-    
     
     return [[super alloc] init];
 }
@@ -120,7 +112,7 @@
 }
 
 - (id) parseData:(id)data klass:(Class)klass {
-    
+
     return [self.delegate handleApiResponse:data klass:klass];
     
 }
