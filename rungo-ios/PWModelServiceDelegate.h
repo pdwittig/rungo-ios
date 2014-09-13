@@ -10,8 +10,8 @@
 
 @protocol PWModelServiceDelegate <NSObject>
 
-typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject);
+typedef void (^completionBlock)(BOOL success, NSError *error, id responseObject);
 
-- (void) save:(id)object callback:(responseCallback)callback;
+- (void) save:(id)object completion:(completionBlock)completion;
 
 @end

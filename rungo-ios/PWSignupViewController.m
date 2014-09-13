@@ -28,7 +28,7 @@
 
 - (IBAction)signup:(id)sender {
     [self validateUserInput];
-    [self.userService createUserWithEmail:self.emailField.text password:self.passwordField.text passwordConfirmation:self.passwordConfirmationField.text callback:^(BOOL success, NSError *error, id responseObject){
+    [self.userService createUserWithEmail:self.emailField.text password:self.passwordField.text passwordConfirmation:self.passwordConfirmationField.text completion:^(BOOL success, NSError *error, id responseObject){
         if (success){
             
             [self.navigationController popViewControllerAnimated:YES];

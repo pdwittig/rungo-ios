@@ -14,21 +14,20 @@
 #import "PWUserService.h"
 #import "PWModelServiceDelegate.h"
 
-@interface PWSettingsService : NSObject <PWApiClientDelegate, PWModelServiceDelegate>
+@interface PWSettingsService : NSObject < PWModelServiceDelegate>
 
-typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject);
+typedef void (^completionBlock)(BOOL success, NSError *error, id responseObject);
 
 @property(nonatomic, strong) PWApiClient *apiClient;
 @property(nonatomic, strong) PWUserService *userService;
 
-- (void) fetchSettingsForUserAuthToken:(NSString *)authToken callback:(responseCallback)callback;
-- (void) fetchAllAgenciesWithCallback:(responseCallback)callback;
-- (void) fetchAllNonDirectionalRoutesforAgency:(NSString *)agencyName callback:(responseCallback)callback;
-- (void) fetchAllDirectionalRoutesForNonDirectionalRoute:(NSString *)nonDirectionalRotueName callback:(responseCallback)callback;
+- (void) fetchSettingsForUserAuthToken:(NSString *)authToken completion:(completionBlock)completion;
+- (void) fetchAllAgenciesWithCallback:(completionBlock)completion;
+- (void) fetchAllNonDirectionalRoutesforAgency:(NSString *)agencyName completion:(completionBlock)completion;
+- (void) fetchAllDirectionalRoutesForNonDirectionalRoute:(NSString *)nonDirectionalRotueName completion:(completionBlock)completion;
 
-- (id) handleApiResponse:(id)data klass:(Class)klass;
 - (id) settingsWithServiceDelegate;
-- (void) save:(id)object callback:(responseCallback)callback;
+- (void) save:(id)object completion:(completionBlock)completion;
 
 
 @end

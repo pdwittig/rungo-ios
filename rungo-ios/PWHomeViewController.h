@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PWUserService.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface PWHomeViewController : UIViewController
 
