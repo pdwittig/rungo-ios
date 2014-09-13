@@ -26,8 +26,8 @@
 
 #pragma mark - Delegate Methods
 
-- (void) saveWithcallback:(responseCallback)callback {
-    [self.delegate save:self callback:callback];
+- (void) saveWithcallback:(completionBlock)completion {
+    [self.delegate save:self completion:completion];
 }
 
 @end

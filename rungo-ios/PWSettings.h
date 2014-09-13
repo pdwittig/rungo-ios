@@ -23,6 +23,6 @@
 - (id) initWithAgency:(PWAgency *)agency;
 + (id) settingsWithAgency:(PWAgency *)agency;
 
-- (void) saveWithcallback:(responseCallback)callback;
+- (void) saveWithcallback:(completionBlock)completion;
 
 @end

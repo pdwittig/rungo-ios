@@ -10,20 +10,17 @@
 #import "PWUser.h"
 #import "PWApiClient.h"
 
-@interface PWUserService : NSObject <PWApiClientDelegate>
+@interface PWUserService : NSObject 
 
-typedef void (^responseCallback)(BOOL success, NSError *error, id responseObject);
+typedef void (^completionBlock)(BOOL success, NSError *error, id responseObject);
 
 @property(nonatomic,strong) PWApiClient *apiClient;
 
 
-- (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation callback:(responseCallback)callback;
-- (void) loginWithEmail:(NSString *)email password:(NSString *)password callback:(responseCallback)calllback;
+- (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation completion:(completionBlock)completion;
+- (void) loginWithEmail:(NSString *)email password:(NSString *)password completion:(completionBlock)completion;
 
 - (id) currentUser;
 - (void) setCurrentUserWithEmail:(NSString *)email authToken:(NSString *)authToken;
-- (id) handleApiResponse:(id)data klass:(Class)klass;
-
-
 
 @end

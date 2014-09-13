@@ -22,30 +22,51 @@
 
 #pragma mark - API Queries
 
-- (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation callback:(responseCallback)callback {
+- (void) createUserWithEmail:(NSString *)email password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation completion:(completionBlock)completion {
     
     NSDictionary *params = @{@"email":email, @"password":password, @"password_confirmation":passwordConfirmation};
-    
-    self.apiClient.delegate = self;
     
     [self.apiClient postRequest:@"users/"
                     params:params
                      klass:[PWUser class]
                    options:[NSNumber numberWithInt:1]
-                  callback:callback];
+                     completion:^(BOOL success, NSError *error, id responseObject) {
+                         if (success){
+                             
+                             completion(YES, error, responseObject);
+                             
+                         }
+                         else {
+                             
+                             completion(NO, error, responseObject);
+                             
+                         }
+                     }];
     
 }
 
-- (void) loginWithEmail:(NSString *)email password:(NSString *)password callback:(responseCallback)callback {
+- (void) loginWithEmail:(NSString *)email password:(NSString *)password completion:(completionBlock)completion {
     
     NSDictionary *params = @{@"email":email, @"password":password};
     
-    self.apiClient.delegate = self;
     [self.apiClient postRequest:@"sessions/"
                     params:params
                      klass:[PWUser class]
                    options:nil
-                  callback:callback];
+                completion:^(BOOL success, NSError *error, id responseObject) {
+                         if (success){
+                             
+                             [self setCurrentUserWithEmail:responseObject[@"email"] authToken:responseObject[@"auth_token"][@"access_token"]];
+                             completion(YES, error, responseObject);
+                             
+                         }
+                         else {
+                             
+                             completion(NO, error, responseObject);
+                             
+                         }
+                     }];
+    
     
 }
 
@@ -67,16 +88,6 @@
     NSDictionary *currentUser = @{@"email":email, @"authToken":authToken};
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:currentUser forKey:@"currentUser"];
-}
-
-
-#pragma mark - Delegate Methods
-
-- (id) handleApiResponse:(id)data klass:(Class)klass {
-    
-    [self setCurrentUserWithEmail:data[@"email"] authToken:data[@"auth_token"][@"access_token"]];
-    
-    return nil;
 }
 
 @end

@@ -100,6 +100,7 @@
     
     if (!self.agencyCollection) {
         [self.settingsService fetchAllAgenciesWithCallback:^(BOOL success, NSError *error, id responseObject) {
+            
             if (success){
                 
                 self.agencyCollection = responseObject;
@@ -111,7 +112,7 @@
 
 - (void) loadNonDirectionalRoutes {
     
-    [self.settingsService fetchAllNonDirectionalRoutesforAgency:self.settings.agency.name callback:^(BOOL success, NSError *error, id responseObject) {
+    [self.settingsService fetchAllNonDirectionalRoutesforAgency:self.settings.agency.name completion:^(BOOL success, NSError *error, id responseObject) {
         
         if (success){
             
@@ -123,7 +124,7 @@
 
 - (void) loadDirectionalRoutes {
     
-    [self.settingsService fetchAllDirectionalRoutesForNonDirectionalRoute:self.settings.nonDirectionalRoute.name callback:^(BOOL success, NSError *error, id responseObject) {
+    [self.settingsService fetchAllDirectionalRoutesForNonDirectionalRoute:self.settings.nonDirectionalRoute.name completion:^(BOOL success, NSError *error, id responseObject) {
     
         if (success) {
             
@@ -137,7 +138,7 @@
 - (void) loadSettings {
     
     PWUser *user = [self.userService currentUser];
-    [self.settingsService fetchSettingsForUserAuthToken:[user authToken] callback:^(BOOL success, NSError *error, id responseObject) {
+    [self.settingsService fetchSettingsForUserAuthToken:[user authToken] completion:^(BOOL success, NSError *error, id responseObject) {
         if (success) {
             
             self.settings = responseObject;

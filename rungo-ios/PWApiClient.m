@@ -35,47 +35,47 @@
 
 # pragma mark  - API Calls
 
-- (void) getRequest:(NSString *)url params:(NSDictionary *)params klass:(Class)klass options:(NSNumber *)options callback:(responseCallback)callback {
+- (void) getRequest:(NSString *)url params:(NSDictionary *)params klass:(Class)klass options:(NSNumber *)options completion:(completionBlock)completion {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager GET:[self endpointUrlWithResource:url] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        [self handleApiSuccess:responseObject klass:klass options:options callback:callback];
+        completion(YES, nil, responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        [self handleApiError:operation callback:callback];
+        [self handleApiError:operation completion:completion];
         
     }];
 }
 
-- (void) postRequest:(NSString *)url params:(NSDictionary *)params klass:(Class)klass options:(NSNumber *)options callback:(responseCallback)callback {
+- (void) postRequest:(NSString *)url params:(NSDictionary *)params klass:(Class)klass options:(NSNumber *)options completion:(completionBlock)completion {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager POST:[self endpointUrlWithResource:url] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        [self handleApiSuccess:responseObject klass:klass options:options callback:callback];
+         completion(YES, nil, responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-       [self handleApiError:operation callback:callback];
+       [self handleApiError:operation completion:completion];
         
     }];
 }
 
-- (void) putRequest:(NSString *)url params:(NSDictionary *)params klass:(Class)klass options:(NSNumber *)options callback:(responseCallback)callback {
+- (void) putRequest:(NSString *)url params:(NSDictionary *)params klass:(Class)klass options:(NSNumber *)options completion:(completionBlock)completion {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager PUT:[self endpointUrlWithResource:url] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        [self handleApiSuccess:responseObject klass:klass options:options callback:callback];
+         completion(YES, nil, responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        [self handleApiError:operation callback:callback];
+       [self handleApiError:operation completion:completion];
         
     }];
 }
@@ -83,26 +83,17 @@
 
 # pragma mark - Helpers
 
-- (void) handleApiSuccess:(id)responseObject klass:(Class)klass options:(NSNumber *)options callback:(responseCallback)callback {
-    
-    id response;
-    
-    if ([options intValue] == 1) {
-        response = responseObject;
-    }
-    else {
-        response = [self  parseData:responseObject klass:klass];
-    }
-
-    callback(YES, nil, response);
-    
-}
-
-- (void) handleApiError:(id)responseObject callback:(responseCallback)callback {
+- (void) handleApiError:(id)responseObject completion:(completionBlock)completion {
     
     NSDictionary *response = [self parseError:[responseObject responseString]];
     NSError *apiError = [NSError errorWithDomain:@"apiError" code:0 userInfo:response];
-    callback(NO,apiError, nil);
+    completion(NO,apiError, nil);
+}
+
+- (NSDictionary *) parseError:(id)object {
+    NSError *error;
+    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:[object dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
+    return response;
 }
 
 - (NSString *) endpointUrlWithResource:(NSString *)resource {
@@ -111,17 +102,6 @@
     
 }
 
-- (id) parseData:(id)data klass:(Class)klass {
-
-    return [self.delegate handleApiResponse:data klass:klass];
-    
-}
-
-- (NSDictionary *) parseError:(id)object {
-    NSError *error;
-    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:[object dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
-    return response;
-}
 
 @end
 

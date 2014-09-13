@@ -11,6 +11,7 @@
 @interface PWAgency : NSObject
 
 @property(nonatomic, strong) NSString *name;
+@property(nonatomic, strong) NSArray *nonDirectionalRoutes;
 
 - (id) initWithName:(NSString *)name;
 + (id) agencyWithName:(NSString *)name;

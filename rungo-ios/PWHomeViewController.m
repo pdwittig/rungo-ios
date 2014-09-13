@@ -20,6 +20,12 @@
     [super viewDidLoad];
     
     self.userService = [[PWUserService alloc] init];
+    
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    CLLocation *lovation = [locationManager location];
+    
+    NSLog(@"%@", lovation);
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated {

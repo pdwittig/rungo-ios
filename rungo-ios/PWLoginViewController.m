@@ -32,7 +32,7 @@
 - (IBAction)login:(id)sender {
     
     [self validateUserInput];
-    [self.userService loginWithEmail:self.emailField.text password:self.passwordField.text callback:^(BOOL success, NSError *error, id responseObject) {
+    [self.userService loginWithEmail:self.emailField.text password:self.passwordField.text completion:^(BOOL success, NSError *error, id responseObject) {
        
         if (success) {
             
